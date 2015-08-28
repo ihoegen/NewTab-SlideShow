@@ -1,194 +1,34 @@
 <!DOCTYPE html>
+<!--TODO:
+-Tinker with the weather API, setup user input weather location, maybe tie in google maps api.
+-Attach Google Autocomplete API for the search box
+-->
 <html>
     <head>
         <title>New Tab</title>
         <meta charset=UTF-8>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <link href='http://fonts.googleapis.com/css?family=Lobster' rel=stylesheet type='text/css'>
-        <meta name=viewport content="width=device-width, initial-scale=1.0">
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
-        <script src="http://s.codepen.io/assets/libs/modernizr.js"></script>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel=stylesheet type='text/css'>
         <link rel=stylesheet href="//codepen.io/assets/reset/normalize.css">
-        <style>button{z-index:1000;}
-            a{color:white;font-family:Arial;}
-            body{color:white;font-family:Arial;}
-            #successmessage{color:green;}
-            #errormessage{color:red}
-            button{display:inline-block;padding:8px 8px;background:transparent;border:none;color:#FFFFFF;font:normal 400 15px "Arial", sans-serif;text-align:center;}
-            .input{font-size:15px;font-family:Arial, Sans-Serif;display:inline-block;margin-bottom:0px;padding:7px;color:darkslategrey;box-shadow:none;border:none;border-radius:0;}
-            .input:focus{border-color:white;outline:none;}
-            h1{font-family:lobster;}
-            .content{text-align:center;font-size:150px;width:1000px;height:400px;position:absolute;left:50%;top:50%;margin:-170px 0 0 -500px;line-height:.75}
-            .input1{font-size:30px;font-family:Arial, Sans-Serif;display:inline-block;width:550px;height:50px;margin-bottom:0px;padding:0px 5px 0px 5px;color:darkslategrey;box-shadow:none;border:none;border-radius:0;}
-            .input1:focus{border-color:white;outline:none;}
-            #date{font-size:50px}
-            @font-face{font-family:'weather';src:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot');src:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot?#iefix') format('embedded-opentype'),
-                           url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.woff') format('woff'),
-                           url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.ttf') format('truetype'),
-                           url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.svg#artill_clean_weather_iconsRg') format('svg');font-weight:normal;font-style:normal;}
-            #weather{width:500px;margin:0px auto;text-align:center;text-transform:uppercase;}
-            i{color:#fff;font-family:weather;font-size:30px;font-weight:normal;font-style:normal;line-height:1.0;}
-            .icon-0:before{content:":";}
-            .icon-1:before{content:"p";}
-            .icon-2:before{content:"S";}
-            .icon-3:before{content:"Q";}
-            .icon-4:before{content:"S";}
-            .icon-5:before{content:"W";}
-            .icon-6:before{content:"W";}
-            .icon-7:before{content:"W";}
-            .icon-8:before{content:"W";}
-            .icon-9:before{content:"I";}
-            .icon-10:before{content:"W";}
-            .icon-11:before{content:"I";}
-            .icon-12:before{content:"I";}
-            .icon-13:before{content:"I";}
-            .icon-14:before{content:"I";}
-            .icon-15:before{content:"W";}
-            .icon-16:before{content:"I";}
-            .icon-17:before{content:"W";}
-            .icon-18:before{content:"U";}
-            .icon-19:before{content:"Z";}
-            .icon-20:before{content:"Z";}
-            .icon-21:before{content:"Z";}
-            .icon-22:before{content:"Z";}
-            .icon-23:before{content:"Z";}
-            .icon-24:before{content:"E";}
-            .icon-25:before{content:"E";}
-            .icon-26:before{content:"3";}
-            .icon-27:before{content:"a";}
-            .icon-28:before{content:"A";}
-            .icon-29:before{content:"a";}
-            .icon-30:before{content:"A";}
-            .icon-31:before{content:"6";}
-            .icon-32:before{content:"1";}
-            .icon-33:before{content:"6";}
-            .icon-34:before{content:"1";}
-            .icon-35:before{content:"W";}
-            .icon-36:before{content:"1";}
-            .icon-37:before{content:"S";}
-            .icon-38:before{content:"S";}
-            .icon-39:before{content:"S";}
-            .icon-40:before{content:"M";}
-            .icon-41:before{content:"W";}
-            .icon-42:before{content:"I";}
-            .icon-43:before{content:"W";}
-            .icon-44:before{content:"a";}
-            .icon-45:before{content:"S";}
-            .icon-46:before{content:"U";}
-            .icon-47:before{content:"S";}
-            #weather h2{margin:0 0 8px;color:#fff;font-size:25px;font-weight:100;font-family:Arial;text-align:right;text-shadow:0px 1px 3px rgba(0, 0, 0, 0.15);margin-right:20px;}
-            #weather .currently{margin:0 20px;}
-            .btn{background-image:-webkit-gradient(linear,left top,left bottom,from(#f5f5f5),to(#f1f1f1));background-image:-webkit-linear-gradient(top,#f5f5f5,#f1f1f1);-webkit-border-radius:2px;-webkit-user-select:none;background-color:#f5f5f5;background-image:linear-gradient(top,#f5f5f5,#f1f1f1);background-image:-o-linear-gradient(top,#f5f5f5,#f1f1f1);border:1px solid #dcdcdc;border:1px solid rgba(0,0,0,0.1);border-radius:2px;color:#444;cursor:default;font-family:arial,sans-serif;font-size:11px;font-weight:bold;margin:11px 8px;min-width:54px;padding:10px 20px;text-align:center;}</style>
-        <script>window.console = window.console || function (t) {
-    };</script>
+        <link rel=stylesheet href=main.css>
+        <link href='http://fonts.googleapis.com/css?family=Lobster' rel=stylesheet type='text/css'>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+        <script src="http://s.codepen.io/assets/libs/modernizr.js"></script>
         <script src="//assets.codepen.io/assets/libs/prefixfree.min-d258f6cb24f3a877e4fb83b348ec8a3f.js"></script>
-            <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        <script src=ga.js></script>
+        <meta name=viewport content="width=device-width, initial-scale=1.0">
 
-  ga('create', 'UA-66867484-2', 'auto');
-  ga('send', 'pageview');
-
-</script>
     </head>
     <body onload="startTime()">
-        <script>$(document).ready(function () {
-                $('#bing').hide();
-                $('#yahoo').hide();
-                $('#successmessage').hide();
-                $('#settinghide').hide();
-                $('.settings').hide();
-                $('#errormessage').hide();
-                $('#settingview').click(function () {
-                    $('#settinghide').show();
-                    $('#settingview').hide();
-                    $('.settings').show();
-                });
-                $('#settinghide').click(function () {
-                    $('#settingview').show();
-                    $('#settinghide').hide();
-                    $('.settings').hide();
-                });
-                var google = $('#google');
-                var bing = $('#bing');
-                var yahoo = $('#yahoo');
-                var testDefault = localStorage.getItem("defaultsearch");
-                if (testDefault === 'yahoo') {
-                    google.hide();
-                    bing.hide();
-                    yahoo.show();
-                }
-                else if (testDefault === 'bing') {
-                    google.hide();
-                    bing.show();
-                    yahoo.hide();
-                } else {
-                    google.show();
-                    bing.hide();
-                    yahoo.hide();
-                }
-                $('#gset').click(function () {
-                    google.show();
-                    bing.hide();
-                    yahoo.hide();
-                    localStorage.setItem("defaultsearch", "google");
-                });
-                $('#yset').click(function () {
-                    google.hide();
-                    bing.hide();
-                    yahoo.show();
-                    localStorage.setItem("defaultsearch", "yahoo");
-                });
-                $('#bset').click(function () {
-                    google.hide();
-                    bing.show();
-                    yahoo.hide();
-                    localStorage.setItem("defaultsearch", "bing");
-                });
-            });
-            var background = JSON.parse(localStorage["background"]);
-            function pushtoarray() {
-                var x = $("input[name=image1]").val();
-                var re = new RegExp('\\.[pngjif]+', 'g');
-                if (re.test(x)) {
-                    document.getElementById("image").value = "http://imgur.com/";
-                    background.push(x);
-                    localStorage["background"] = JSON.stringify(background);
-                    $('#successmessage').show();
-                    refresh();
-                }
-                else {
-                    $('#errormessage').show();
-                }
-            }
-            var backdrop = JSON.parse(localStorage["background"]);
-            if (backdrop.length >= 1) {
-                $.backstretch(backdrop, {duration: 5000, fade: 750});
-            }
-            function refresh() {
-        var backdrop = JSON.parse(localStorage["background"]);
-        if (background.length >= 1) {
-            $.backstretch(backdrop, {duration: 5000, fade: 750});
-            location.reload();
-        }
-    }
-    ;
-    function clearbg() {
-        var cleanbackground = [];
-        localStorage["background"] = JSON.stringify(cleanbackground);
-        location.reload();
-    }</script>
+        <script src=main.min.js></script>
         <button id=settingview>Settings</button>
         <button id=settinghide>Hide</button>
         <div style="float: right">
             <!--Wait until I have this shit figured out <div id=weather></div>-->
         </div>
-        <div class=settings style='background-color:darkslategray; width: 300px;color:white;padding:15px;'>
+        <div id=settings>
             <h1>NewTab Slideshow</h1>
-            <p>Images must be added from <a href='http://imgur.com'>imgur.com</a></p>
+            <p>Images should be added from <a href='http://imgur.com'>imgur.com</a>, or another host</p>
             <p>
                 <b>Make sure the image has a file extension on the end. ie. .png .jpg .gif</b>
             </p>
@@ -213,7 +53,7 @@
         <div class=content>
             <div id=txt style='padding-bottom:0px;'></div>
             <p id=date style=line-height:0></p>
-            <div class=search_box style='line-height: 0px;'>
+            <div style='line-height: 0px;'>
                 <div id=google>
                     <form action="https://www.google.com/search" class=input1>
                         <input class=input1 name=q placeholder="Google Search">
@@ -234,47 +74,9 @@
                 </div>
             </div>
         </div>
-        <script>function startTime() {
-                var today = new Date();
-                var h = today.getHours();
-                var m = today.getMinutes();
-                m = checkTime(m);
-                document.getElementById('txt').innerHTML = h + ":" + m;
-                var t = setTimeout(function () {
-                    startTime()
-                }, 500);
-            }
-            function checkTime(i) {
-        if (i < 10) {
-            i = "0" + i
-        }
-        ;
-        return i;
-    }
-    ;
-    var d = new Date();
-    document.getElementById("date").innerHTML = d.toDateString();</script>
+        <script src=weather.js></script>
         <script src="//assets.codepen.io/assets/common/stopExecutionOnTimeout-f961f59a28ef4fd551736b43f94620b5.js"></script>
         <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.0.2/jquery.simpleWeather.min.js'></script>
-        <!--
-        <script>navigator.geolocation.getCurrentPosition(function (position) {
-        loadWeather(position.coords.latitude + ',' + position.coords.longitude);
-    });
-    $(document).ready(function () {
-        loadWeather('', '');
-    });
-    function loadWeather(location, woeid) {
-        $.simpleWeather({location: location, woeid: woeid, unit: 'f', success: function (weather) {
-                html = '<h2><i class="icon-' + weather.code + '"></i> ' + weather.temp + '&deg;' + weather.units.temp + '</h2>';
-                $('#weather').html(html);
-            }, error: function (error) {
-                $('#weather').html('<p>' + error + '</p>');
-            }});
-    }</script>
-        <script>if (document.location.search.match(/type=embed/gi)) {
-        window.parent.postMessage("resize", "*");
-    }</script>-->
-    
     </body>
 </html>
