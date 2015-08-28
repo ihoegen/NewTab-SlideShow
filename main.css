@@ -8,7 +8,7 @@ button{display:inline-block;padding:8px 8px;background:transparent;border:none;c
 .input:focus{border-color:white;outline:none;}
 h1{font-family:lobster;}
 .content{text-align:center;font-size:150px;width:1000px;height:400px;position:absolute;left:50%;top:50%;margin:-170px 0 0 -500px;line-height:.75}
-.input1{font-size:30px;font-family:Arial, Sans-Serif;display:inline-block;width:550px;height:50px;margin-bottom:0px;padding:0px 5px 0px 5px;color:darkslategrey;box-shadow:none;border:none;border-radius:0;}
+.input1{font-size:25px;font-family:Arial, Sans-Serif;display:inline-block;width:550px;height:40px;margin-bottom:0px;padding:0px 5px 0px 5px;color:darkslategrey;box-shadow:none;border:none;border-radius:0;}
 .input1:focus{border-color:white;outline:none;}
 #date{font-size:50px}
 @font-face{font-family:'weather';src:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot');src:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot?#iefix') format('embedded-opentype'),

@@ -18,23 +18,25 @@ function checkTime(i) {
 ;
 var d = new Date();
 document.getElementById("date").innerHTML = d.toDateString();
-/* Code for the Location Based Weather
-navigator.geolocation.getCurrentPosition(function (position) {
-        loadWeather(position.coords.latitude + ',' + position.coords.longitude);
-    });
-    $(document).ready(function () {
-        loadWeather('', '');
-    });
-    function loadWeather(location, woeid) {
-        $.simpleWeather({location: location, woeid: woeid, unit: 'f', success: function (weather) {
-                html = '<h2><i class="icon-' + weather.code + '"></i> ' + weather.temp + '&deg;' + weather.units.temp + '</h2>';
-                $('#weather').html(html);
-            }, error: function (error) {
-                $('#weather').html('<p>' + error + '</p>');
-            }});
+/* Weather Code
+ 
+ // Docs at http://simpleweatherjs.com
+var wLoc='Seattle';
+$(document).ready(function() {
+  $.simpleWeather({
+    location: wLoc,
+    woeid: '',
+    unit: 'f',
+    success: function(weather) {
+      html = '<p>'+weather.temp+'&deg;'+weather.units.temp+'</p>';
+  
+      $("#weather").html(html);
+    },
+    error: function(error) {
+      $("#weather").html('<p>'+error+'</p>');
     }
-    if (document.location.search.match(/type=embed/gi)) {
-        window.parent.postMessage("resize", "*");
-    }
+  });
+});
+
     */
     
