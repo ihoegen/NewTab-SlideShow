@@ -83,6 +83,16 @@
         <script>window.console = window.console || function (t) {
     };</script>
         <script src="//assets.codepen.io/assets/libs/prefixfree.min-d258f6cb24f3a877e4fb83b348ec8a3f.js"></script>
+            <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66867484-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
     </head>
     <body onload="startTime()">
         <script>$(document).ready(function () {
@@ -162,6 +172,7 @@
         var backdrop = JSON.parse(localStorage["background"]);
         if (background.length >= 1) {
             $.backstretch(backdrop, {duration: 5000, fade: 750});
+            location.reload();
         }
     }
     ;
@@ -173,7 +184,7 @@
         <button id=settingview>Settings</button>
         <button id=settinghide>Hide</button>
         <div style="float: right">
-            <div id=weather></div>
+            <!--Wait until I have this shit figured out <div id=weather></div>-->
         </div>
         <div class=settings style='background-color:darkslategray; width: 300px;color:white;padding:15px;'>
             <h1>NewTab Slideshow</h1>
@@ -192,6 +203,12 @@
             <button id=gset>Google</button>
             <button id=bset>Bing</button>
             <button id=yset>Yahoo</button>
+            <br>
+            <br>
+            <a href="https://chrome.google.com/webstore/detail/newtab-slideshow-creator/lmolkglopgpgndjckhkndjglddidcaib">Chrome Extension Download</a>
+            <br>
+            <a href="http://hoegendevelopments.ga">Developer Website</a>
+            <br><a href="https://github.com/ihoegen/NewTab-SlideShow">Github</a>
         </div>
         <div class=content>
             <div id=txt style='padding-bottom:0px;'></div>
@@ -240,6 +257,7 @@
         <script src="//assets.codepen.io/assets/common/stopExecutionOnTimeout-f961f59a28ef4fd551736b43f94620b5.js"></script>
         <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.0.2/jquery.simpleWeather.min.js'></script>
+        <!--
         <script>navigator.geolocation.getCurrentPosition(function (position) {
         loadWeather(position.coords.latitude + ',' + position.coords.longitude);
     });
@@ -256,6 +274,7 @@
     }</script>
         <script>if (document.location.search.match(/type=embed/gi)) {
         window.parent.postMessage("resize", "*");
-    }</script>
+    }</script>-->
+    
     </body>
 </html>
