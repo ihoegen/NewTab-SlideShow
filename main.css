@@ -1,47 +1,59 @@
-body{color:white;font-family:Arial;background-color: darkslategray;  font: 15px 'Open Sans', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;}
-button{z-index:1000;}
+/*General */
+body{color:white;font-family:Arial;background-color: darkslategray;  font: 15px 'Open Sans', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;margin:0; padding:0}
+html{margin:0;padding:0;}
 a{color:white;font-family:Arial;}
-#successmessage{color:green;}
-#errormessage{color:red}
-button{display:inline-block;padding:8px 8px;background:transparent;border:none;color:#FFFFFF;font:normal 400 15px "Arial", sans-serif;text-align:center;}
+select{color:black;}
+h1{margin-top:-15px; font-family:lobster;}
+button{z-index:1000; display:inline-block;padding:8px 8px;background:transparent;border:none;font:normal 400 15px "Arial", sans-serif;text-align:center;}
+/*Status Messages*/
+#successmessage{color:green; display:none;}
+#errormessage{color:red; display:none}
+/*Input fields*/
 .input{font-size:15px;font-family:Arial, Sans-Serif;display:inline-block;margin-bottom:0px;padding:7px;color:darkslategrey;box-shadow:none;border:none;border-radius:0;}
 .input:focus{border-color:white;outline:none;}
-h1{margin-top:-15px; font-family:lobster;}
-.content{text-align:center;font-size:150px;width:600px;height:400px;position:absolute;left:50%;top:50%;margin:-170px 0 0 -300px;line-height:.75; z-index:0}
-.input1{font-size:25px;font-family:Arial, Sans-Serif;display:inline-block;width:550px;height:40px;margin-bottom:0px;padding:0px 5px 0px 5px;color:darkslategrey;box-shadow:none;border:none;border-radius:0;}
-.input1:focus{border-color:white;outline:none;}
-#date{font-size:50px}
-#settings{display:none;background-color:darkslategray; width: 300px;color:white;padding:15px;z-index: 900}
-#settings button{background-color:#eeeeee; color:black;}
+/*Search Engines*/
 #yahoo{display:none}
 #bing{display:none}
+.input1{font-size:25px;font-family:Arial, Sans-Serif;display:inline-block;width:550px;height:40px;margin-bottom:0px;padding:0px 5px 0px 5px;color:darkslategrey;box-shadow:none;border:none;border-radius:0;}
+.input1:focus{border-color:white;outline:none;}
+.searchEngines{line-height: 0px; padding-top: 15px;}
+/*Center div, holds main content*/
+.content{text-align:center;font-size:150px;width:600px;height:400px;position:absolute;left:50%;top:50%;margin:-170px 0 0 -300px;line-height:.75; z-index:0}
+/*Date*/
+#date{font-size:50px; line-height:0}
+/*Clock*/
+#clock{padding-bottom:0px;}
+/*Settings*/
+#settings{display:none;background-color:darkslategray; width: 300px;color:white;padding:15px;z-index: 900;}
+#settings button{background-color:#eeeeee; color:black;}
+#settinghide{float:right;background-color:red !important;color:white !important; margin-top: -15px; margin-right: -15px;}
 .btn{background-image:-webkit-gradient(linear,left top,left bottom,from(#f5f5f5),to(#f1f1f1));background-image:-webkit-linear-gradient(top,#f5f5f5,#f1f1f1);-webkit-border-radius:2px;-webkit-user-select:none;background-color:#f5f5f5;background-image:linear-gradient(top,#f5f5f5,#f1f1f1);background-image:-o-linear-gradient(top,#f5f5f5,#f1f1f1);border:1px solid #dcdcdc;border:1px solid rgba(0,0,0,0.1);border-radius:2px;color:#444;cursor:default;font-family:arial,sans-serif;font-size:11px;font-weight:bold;margin:11px 8px;min-width:54px;padding:10px 20px;text-align:center;}
-//Weather
-body {
-}
+/*Weather*/
+/*Weather font*/
 @font-face {
     font-family: 'weather';
     src: url('fonts/artill_clean_icons-webfont1.eot');
     src: url('fonts/artill_clean_icons-webfont.eot') format('embedded-opentype'),
-         url('fonts/artill_clean_icons-webfont.woff') format('woff'),
-         url('fonts/artill_clean_icons-webfont.ttf') format('truetype'),
-         url('fonts/artill_clean_icons-webfont.eot') format('svg');
+        url('fonts/artill_clean_icons-webfont.woff') format('woff'),
+        url('fonts/artill_clean_icons-webfont.ttf') format('truetype'),
+        url('fonts/artill_clean_icons-webfont.eot') format('svg');
     font-weight: normal;
     font-style: normal;
 }
+/*Weather output*/
 #weather {
-  width: 500px;
-  text-align: center;
-  text-transform: uppercase;
-  margin:5px 15px 0px 0px;
+    width: 500px;
+    text-align: center;
+    text-transform: uppercase;
+    margin:5px 15px 0px 0px;
 }
+/*Weather Icon*/
 i {
-  color: #fff;
-  font-family: weather;
-  font-size: 35px;
-  font-weight: normal;
-  font-style: normal;
-  line-height: 0;
+    font-family: weather;
+    font-size: 35px;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 0;
 }
 .icon-0:before { content: ":"; }
 .icon-1:before { content: "p"; }
@@ -91,19 +103,18 @@ i {
 .icon-45:before { content: "S"; }
 .icon-46:before { content: "U"; }
 .icon-47:before { content: "S"; }
+/*Weather output continued*/
 #weather h2 {
-  margin: 0 0 8px;
-  color: #fff;
-  font-size: 25px;
-  font-weight: 200;
-  text-align: right;
-  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15); 
+    margin: 0 0 8px;
+    font-size: 25px;
+    font-weight: 200;
+    text-align: right;
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
 }
 #weather h3 {
-  margin: 0 0 8px;
-  color: #fff;
-  font-size: 15px;
-  font-weight: 200;
-  text-align: right;
-  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+    margin: 0 0 8px;
+    font-size: 15px;
+    font-weight: 200;
+    text-align: right;
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
 }

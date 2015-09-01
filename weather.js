@@ -1,4 +1,5 @@
 //Clock
+startTime();
 function startTime() {
     var today = new Date();
     var h = today.getHours();
@@ -39,5 +40,7 @@ function loadWeather(location, woeid) {
         error: function (error) {
             $("#weather").html('<p>' + error + '</p>');
         }
-    });
-}
+    })
+    ;
+}           
+         
