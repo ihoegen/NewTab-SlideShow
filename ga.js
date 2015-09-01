@@ -9,9 +9,7 @@
     a.src = g;
     m.parentNode.insertBefore(a, m)
 })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
 ga('create', 'UA-66867484-2', 'auto');
 ga('send', 'pageview');
-
 window.console = window.console || function (t) {
-    };
+};

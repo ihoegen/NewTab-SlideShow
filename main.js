@@ -2,17 +2,14 @@ $(document).ready(function () {
     $('#bing').hide();
     $('#yahoo').hide();
     $('#successmessage').hide();
-
     $('#settings').hide();
     $('#errormessage').hide();
     $('#settingview').click(function () {
-
         $('#settingview').hide();
         $('#settings').show();
     });
     $('#settinghide').click(function () {
         $('#settingview').show();
-
         $('#settings').hide();
     });
     var google = $('#google');
@@ -68,21 +65,17 @@ $(document).ready(function () {
         var weatherInputValue = $("input[name=weatherLocation]").val();
         localStorage.setItem('defaultWeatherLocation', weatherInputValue);
         location.reload();
-
     });
-
     $("#fs").change(function () {
         var userChoiceFont = $(this).val();
         localStorage.setItem('userFont', userChoiceFont);
         var userChoiceFontApp = localStorage.getItem('userFont');
         $('body').css("font-family", userChoiceFontApp);
-
-
     });
     var userChoiceFontApp = localStorage.getItem('userFont');
     $("#fs").val(userChoiceFontApp);
     $('body').css("font-family", userChoiceFontApp);
-
+  
 });
 var background = JSON.parse(localStorage["background"]);
 function refresh() {
@@ -90,9 +83,7 @@ function refresh() {
     location.reload();
     if (background.length >= 1) {
         $.backstretch(backdrop, {duration: 6000, fade: 1000});
-
     }
-
 }
 function pushtoarray() {
     var x = $("input[name=image1]").val();
@@ -108,12 +99,10 @@ function pushtoarray() {
         $('#errormessage').show();
     }
 }
-
 var backdrop = JSON.parse(localStorage["background"]);
 if (backdrop.length >= 1) {
     $.backstretch(backdrop, {duration: 5000, fade: 750});
 }
-
 ;
 function clearbg() {
     var cleanbackground = [];

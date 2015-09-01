@@ -1,6 +1,6 @@
+body{color:white;font-family:Arial;background-color: darkslategray;  font: 15px 'Open Sans', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;}
 button{z-index:1000;}
 a{color:white;font-family:Arial;}
-body{color:white;font-family:Arial;background-color: darkslategray}
 #successmessage{color:green;}
 #errormessage{color:red}
 button{display:inline-block;padding:8px 8px;background:transparent;border:none;color:#FFFFFF;font:normal 400 15px "Arial", sans-serif;text-align:center;}
@@ -11,41 +11,38 @@ h1{margin-top:-15px; font-family:lobster;}
 .input1{font-size:25px;font-family:Arial, Sans-Serif;display:inline-block;width:550px;height:40px;margin-bottom:0px;padding:0px 5px 0px 5px;color:darkslategrey;box-shadow:none;border:none;border-radius:0;}
 .input1:focus{border-color:white;outline:none;}
 #date{font-size:50px}
-
+#settings{display:none;background-color:darkslategray; width: 300px;color:white;padding:15px;z-index: 900}
+#settings button{background-color:#eeeeee; color:black;}
+#yahoo{display:none}
+#bing{display:none}
+.btn{background-image:-webkit-gradient(linear,left top,left bottom,from(#f5f5f5),to(#f1f1f1));background-image:-webkit-linear-gradient(top,#f5f5f5,#f1f1f1);-webkit-border-radius:2px;-webkit-user-select:none;background-color:#f5f5f5;background-image:linear-gradient(top,#f5f5f5,#f1f1f1);background-image:-o-linear-gradient(top,#f5f5f5,#f1f1f1);border:1px solid #dcdcdc;border:1px solid rgba(0,0,0,0.1);border-radius:2px;color:#444;cursor:default;font-family:arial,sans-serif;font-size:11px;font-weight:bold;margin:11px 8px;min-width:54px;padding:10px 20px;text-align:center;}
 //Weather
 body {
-  padding: 45px 25px;
-  font: 13px 'Open Sans', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  background: #1192d3;
 }
-
 @font-face {
     font-family: 'weather';
-    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot');
-    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot?#iefix') format('embedded-opentype'),
-         url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.woff') format('woff'),
-         url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.ttf') format('truetype'),
-         url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.svg#artill_clean_weather_iconsRg') format('svg');
+    src: url('fonts/artill_clean_icons-webfont1.eot');
+    src: url('fonts/artill_clean_icons-webfont.eot') format('embedded-opentype'),
+         url('fonts/artill_clean_icons-webfont.woff') format('woff'),
+         url('fonts/artill_clean_icons-webfont.ttf') format('truetype'),
+         url('fonts/artill_clean_icons-webfont.eot') format('svg');
     font-weight: normal;
     font-style: normal;
 }
-
 #weather {
   width: 500px;
   text-align: center;
   text-transform: uppercase;
   margin:5px 15px 0px 0px;
 }
-
 i {
   color: #fff;
   font-family: weather;
-  font-size: 50px;
+  font-size: 35px;
   font-weight: normal;
   font-style: normal;
   line-height: 0;
 }
-
 .icon-0:before { content: ":"; }
 .icon-1:before { content: "p"; }
 .icon-2:before { content: "S"; }
@@ -94,16 +91,13 @@ i {
 .icon-45:before { content: "S"; }
 .icon-46:before { content: "U"; }
 .icon-47:before { content: "S"; }
-
 #weather h2 {
   margin: 0 0 8px;
   color: #fff;
   font-size: 25px;
   font-weight: 200;
   text-align: right;
-  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
-  
-  
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15); 
 }
 #weather h3 {
   margin: 0 0 8px;
@@ -113,10 +107,3 @@ i {
   text-align: right;
   text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
 }
-
-
-#settings{display:none;background-color:darkslategray; width: 300px;color:white;padding:15px;z-index: 900}
-#settings button{background-color:#eeeeee; color:black;}
-#yahoo{display:none}
-#bing{display:none}
-.btn{background-image:-webkit-gradient(linear,left top,left bottom,from(#f5f5f5),to(#f1f1f1));background-image:-webkit-linear-gradient(top,#f5f5f5,#f1f1f1);-webkit-border-radius:2px;-webkit-user-select:none;background-color:#f5f5f5;background-image:linear-gradient(top,#f5f5f5,#f1f1f1);background-image:-o-linear-gradient(top,#f5f5f5,#f1f1f1);border:1px solid #dcdcdc;border:1px solid rgba(0,0,0,0.1);border-radius:2px;color:#444;cursor:default;font-family:arial,sans-serif;font-size:11px;font-weight:bold;margin:11px 8px;min-width:54px;padding:10px 20px;text-align:center;}
