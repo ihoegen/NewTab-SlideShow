@@ -1,19 +1,18 @@
-
 $(document).ready(function () {
     $('#bing').hide();
     $('#yahoo').hide();
     $('#successmessage').hide();
-    $('#settinghide').hide();
+
     $('#settings').hide();
     $('#errormessage').hide();
     $('#settingview').click(function () {
-        $('#settinghide').show();
+ 
         $('#settingview').hide();
         $('#settings').show();
     });
     $('#settinghide').click(function () {
         $('#settingview').show();
-        $('#settinghide').hide();
+
         $('#settings').hide();
     });
     var google = $('#google');
@@ -29,7 +28,14 @@ $(document).ready(function () {
         google.hide();
         bing.show();
         yahoo.hide();
-    } else {
+    } 
+    else if(testDefault==='nosearch')
+    {
+        google.hide();
+        bing.hide();
+        yahoo.hide();  
+    }    
+    else {
         google.show();
         bing.hide();
         yahoo.hide();
@@ -52,6 +58,19 @@ $(document).ready(function () {
         yahoo.hide();
         localStorage.setItem("defaultsearch", "bing");
     });
+     $('#nosearch').click(function () {
+        google.hide();
+        bing.hide();
+        yahoo.hide();
+        localStorage.setItem("defaultsearch", "nosearch");
+    });
+    $('#weatherLocUpdate').click(function(){
+        var weatherInputValue = $("input[name=weatherLocation]").val();
+        localStorage.setItem('defaultWeatherLocation', weatherInputValue);
+        location.reload();
+        
+    });
+    
 });
 var background = JSON.parse(localStorage["background"]);
 function refresh() {
@@ -67,7 +86,7 @@ function pushtoarray() {
     var x = $("input[name=image1]").val();
     var re = new RegExp('\\.[pngjif]+', 'g');
     if (re.test(x)) {
-        document.getElementById("image").value = "http://imgur.com/";
+        document.getElementById("image").value = "";
         background.push(x);
         localStorage["background"] = JSON.stringify(background);
         $('#successmessage').show();

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <!--TODO:
--Tinker with the weather API, setup user input weather location, maybe tie in google maps api.
--
+-Add recently opened tabs
 -->
 <html>
     <head>
@@ -21,19 +20,19 @@
 
     </head>
     <body onload="startTime()">
-        <script src=main.min.js></script>
+        <script src=main.js></script>
         <button id=settingview>Settings</button>
-        <button id=settinghide>Hide</button>
         <div style="float: right">
-        <div id=weather></div>
+            <div id=weather></div>
         </div>
         <div id=settings>
+            <button id=settinghide style="float:right;background-color:red;color:white; margin-top: -15px; margin-right: -15px;">X</button>
             <h1>NewTab Slideshow</h1>
-            <p>Images should be added from <a href='http://imgur.com'>imgur.com</a>, or another host</p>
+            <p>Add image from an image host, ie <a href='http://imgur.com'>Imgur</a></p>
             <p>
-                <b>Make sure the image has a file extension on the end. ie. .png .jpg .gif</b>
+              Make sure the image has a file extension on the end. ie. .png .jpg .gif
             </p>
-            <input class=input name=image1 value='http://imgur.com/' id=image size=20> <br>
+            <input class=input name=image1 id=image size=20> <br>
             <p id=successmessage>Image was added successfully</p>
             <p id=errormessage>Make sure the image has an ending of .png, .gif, or .jpg</p>
             <br>
@@ -41,9 +40,15 @@
             <button onclick='clearbg()'>Clear Images</button>
             <br>
             <h4>Default Search Engine</h4>
+            <button id="nosearch">None</button>
             <button id=gset>Google</button>
             <button id=bset>Bing</button>
             <button id=yset>Yahoo</button>
+         
+            <br>
+            <h4>Weather Location</h4>
+            <input class="input" name="weatherLocation" value="Weather Location" id="weatherInput" size="20">
+            <button id="weatherLocUpdate">Save</button>
             <br>
             <br>
             <a href="https://chrome.google.com/webstore/detail/newtab-slideshow-creator/lmolkglopgpgndjckhkndjglddidcaib">Chrome Extension Download</a>
