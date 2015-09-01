@@ -6,7 +6,7 @@ $(document).ready(function () {
     $('#settings').hide();
     $('#errormessage').hide();
     $('#settingview').click(function () {
- 
+
         $('#settingview').hide();
         $('#settings').show();
     });
@@ -28,13 +28,13 @@ $(document).ready(function () {
         google.hide();
         bing.show();
         yahoo.hide();
-    } 
-    else if(testDefault==='nosearch')
+    }
+    else if (testDefault === 'nosearch')
     {
         google.hide();
         bing.hide();
-        yahoo.hide();  
-    }    
+        yahoo.hide();
+    }
     else {
         google.show();
         bing.hide();
@@ -58,27 +58,39 @@ $(document).ready(function () {
         yahoo.hide();
         localStorage.setItem("defaultsearch", "bing");
     });
-     $('#nosearch').click(function () {
+    $('#nosearch').click(function () {
         google.hide();
         bing.hide();
         yahoo.hide();
         localStorage.setItem("defaultsearch", "nosearch");
     });
-    $('#weatherLocUpdate').click(function(){
+    $('#weatherLocUpdate').click(function () {
         var weatherInputValue = $("input[name=weatherLocation]").val();
         localStorage.setItem('defaultWeatherLocation', weatherInputValue);
         location.reload();
-        
+
     });
-    
+
+    $("#fs").change(function () {
+        var userChoiceFont = $(this).val();
+        localStorage.setItem('userFont', userChoiceFont);
+        var userChoiceFontApp = localStorage.getItem('userFont');
+        $('body').css("font-family", userChoiceFontApp);
+
+
+    });
+    var userChoiceFontApp = localStorage.getItem('userFont');
+    $("#fs").val(userChoiceFontApp);
+    $('body').css("font-family", userChoiceFontApp);
+
 });
 var background = JSON.parse(localStorage["background"]);
 function refresh() {
     var backdrop = JSON.parse(localStorage["background"]);
-           location.reload();
+    location.reload();
     if (background.length >= 1) {
         $.backstretch(backdrop, {duration: 6000, fade: 1000});
-     
+
     }
 
 }
@@ -96,6 +108,7 @@ function pushtoarray() {
         $('#errormessage').show();
     }
 }
+
 var backdrop = JSON.parse(localStorage["background"]);
 if (backdrop.length >= 1) {
     $.backstretch(backdrop, {duration: 5000, fade: 750});
