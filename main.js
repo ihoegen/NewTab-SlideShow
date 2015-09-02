@@ -111,7 +111,7 @@ $(document).ready(function () {
     //Hide/show the clock
      var dateVar = $('#date');
     var clockVar = $('#clock');
-    //Hide Clock
+      //Hide Clock
     $("input[name$='clockAction']").click(function () {
         var clockHideorShow = $(this).val();
 
@@ -149,6 +149,7 @@ $(document).ready(function () {
         }
     });
     //Onload retrieval of hide and show clock
+    clockVar.show();
     var dateStatus = localStorage.getItem('dateView');
     var clockStatus = localStorage.getItem('clockView');
     var dateAction = $('input[name$="dateAction"]');
