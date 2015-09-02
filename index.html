@@ -22,7 +22,7 @@
     </head>
     <body>
         <script src=main.js></script>
-        <div style="float:right;">
+        <div class="floatRight">
             <div id=weather></div>
         </div>
         <button id=settingview>Settings</button>
@@ -36,9 +36,9 @@
             <form id="imageSubmit" onsubmit="pushtoarray();
                   " target='_self'>
                 <input class=input name=image1 id=image size=20>
-                <input type="submit" value="Save" class="button" style="background-color:#eeeeee; color:black;">
+                <input type="submit" value="Save" class="button" >
             </form>
-            <button style='background-color:#d9534f; color:white;' id=clearimage onclick='clearbg()'>Clear Images</button>
+            <button id=clearimage onclick='clearbg()'>Clear Images</button>
             <br>
             <h4>Default Search Engine</h4>
             <button id="nosearch" >None</button>
@@ -49,9 +49,9 @@
             <h4>Weather Location</h4>
             <form id="weatherLocationForm">
                 <input class="input" name="weatherLocation" value="Weather Location" id="weatherInput" size="20">
-                <input type="submit" value="Save" class="button" style="background-color:#eeeeee; color:black; ">
+                <input type="submit" value="Save" class="button">
             </form>
-            <table style="width:100%">
+            <table>
                 <tr>
                     <td>
                         <label>Font:</label>
@@ -96,13 +96,11 @@
                             <option value="100px">100</option>
                             <option value="72px">72</option>
                             <option value="64px">64</option>
-
                         </select>
-                        
                     </td>
                 </tr>
             </table>
-            <table style="width:100%">
+            <table>
                 <tr>
                     <td>
                         Clock:
@@ -143,7 +141,7 @@
             <br><a href="https://github.com/ihoegen/NewTab-SlideShow">Github</a>
             <br>
             Donate: &nbsp;
-            <a style='float:right' href="https://flattr.com/submit/auto?user_id=ihoegen&url=http%3A%2F%2Fnewtab.hoegendevelopments.ga" target="_blank"> <img src="//button.flattr.com/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0"></a>
+            <a class="floatRight" href="https://flattr.com/submit/auto?user_id=ihoegen&url=http%3A%2F%2Fnewtab.hoegendevelopments.ga" target="_blank"> <img src="//button.flattr.com/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0"></a>
         </div>
         <div class=content>
             <div id=clock></div>
