@@ -106,6 +106,17 @@ $(document).ready(function () {
     $("#fs").val(userChoiceFontApp);
     $('body').css("font-family", userChoiceFontApp);
     $('#settingview').css('font-family', userChoiceFontApp);
+    //Change the Clock Size
+    $("#cs").change(function () {
+        var userChoice = $(this).val();
+        localStorage.setItem('userClockSize', userChoice);
+        var userChoice = localStorage.getItem('userClockSize');
+        $('#clock').css("font-size", userChoice);
+    });
+    //Display Desired Clock Size
+    var userChoiceClockSize = localStorage.getItem('userClockSize');
+    $("#cs").val(userChoiceClockSize);
+    $('#clock').css("font-size", userChoiceClockSize);
     //Change Font Color
     $("#fc").change(function () {
         var userChoiceColor = $('#fc').val();

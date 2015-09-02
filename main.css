@@ -27,7 +27,7 @@ button:hover, .button:hover{background-color:#e6e6e6!important}
 /*Date*/
 #date{font-size:50px; line-height:0}
 /*Clock*/
-#clock{padding-bottom:0px;}
+#clock{padding-bottom:0px; font-size: 150px;}
 /*Settings*/
 #settings{display:none;background-color:darkslategray; width: 300px;color:white;padding:15px;z-index: 900;}
 #settings button{background-color:#fff; color:black;}
