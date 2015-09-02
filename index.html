@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--TODO:
--Ability to hide clock/date
+-
 -->
 <html>
     <head>
@@ -29,25 +29,24 @@
             <p>
                 Make sure the image has a file extension on the end. ie. .png .jpg .gif
             </p>
-            <input class=input name=image1 id=image size=20>
-            <button onclick='pushtoarray()'>Save</button>
+            <form id="imageSubmit" onsubmit="pushtoarray(); " target='_self'>
+                <input class=input name=image1 id=image size=20>
+                <input type="submit" value="Save" class="button" style="background-color:#eeeeee; color:black;">
+            </form>
             <br>
-            <p id=successmessage>Image was added successfully</p>
-            <p id=errormessage>Make sure the image has an ending of .png, .gif, or .jpg</p>
+            <button style='background-color:#d9534f; color:white;' id=clearimage onclick='clearbg()'>Clear Images</button>
             <br>
-            <button onclick='clearbg()'>Clear Images</button>
+            <h4>Default Search Engine</h4>
+            <button id="nosearch" >None</button>
+            <button id=gset>Google</button>
+            <button id=bset>Bing</button>
+            <button id=yset>Yahoo</button>
             <br>
-               <h4>Default Search Engine</h4>
-                    
-                        <button id="nosearch">None</button>
-                        <button id=gset>Google</button>
-                        <button id=bset>Bing</button>
-                        <button id=yset>Yahoo</button>
-                        <br>
             <h4>Weather Location</h4>
-            <input class="input" name="weatherLocation" value="Weather Location" id="weatherInput" size="20">
-            <button id="weatherLocUpdate">Save</button>
-            <br>
+            <form id="weatherLocationForm">
+                <input class="input" name="weatherLocation" value="Weather Location" id="weatherInput" size="20">
+                <input type="submit" value="Save" class="button" style="background-color:#eeeeee; color:black; ">
+            </form>
             <br>
             <table style="width:100%">
                 <tr>
@@ -103,6 +102,17 @@
                     </td>
                     <td>
                         <label class="radio"><input type=radio name='dateAction' value='hide' data-id="hide"><span class="outer"><span class="inner"></span></span>Hide</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Weather:
+                    </td>
+                    <td>
+                        <label class="radio"><input type=radio name='weatherAction' value='show' data-id="show" checked="checked"><span class="outer"><span class="inner"></span></span>Show</label>
+                    </td>
+                    <td>
+                        <label class="radio"><input type=radio name='weatherAction' value='hide' data-id="hide"><span class="outer"><span class="inner"></span></span>Hide</label>
                     </td>
                 </tr>
             </table>
