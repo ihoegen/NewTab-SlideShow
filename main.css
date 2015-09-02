@@ -1,6 +1,7 @@
 /*General */
 body{cursor: context-menu; color:white;font-family:Arial;background-color: darkslategray;  font: 15px 'Open Sans', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;margin:0; padding:0}
 html{margin:0;padding:0;}
+table{width:100%}
 a{color:white;font-family:Arial;}
 select{color:black; cursor:pointer}
 h1{margin-top:-15px; font-family:lobster;}
@@ -8,6 +9,7 @@ h4, #settings p {margin:  2px;}
 #settings input {margin-bottom: 5px;}
 input[name='weatherLocation']{text-transform: uppercase} 
 /*Buttons*/ 
+#settings .button{background-color:white; color:black;}
 button, .button{border:none; z-index:1000; display:inline-block;padding:8px 8px;background:transparent;border-radius: 4px;  font:normal 400 15px "Arial", sans-serif;text-align:center;cursor:pointer ;}
 button:hover, .button:hover{background-color:#e6e6e6!important}
 #settinghide{width:30px; box-shadow: none; float:right;background-color:#d9534f !important;color:white !important; margin-top: -15px; margin-right: -15px; border-radius:0px;}
@@ -15,6 +17,7 @@ button:hover, .button:hover{background-color:#e6e6e6!important}
 .buttonActive{ background-color: #337ab7 !important; color:white!important; border-color:black!important}
 .buttonActive:hover{background-color:#286090!important}
 #settingview{background-color:transparent!important;}
+#clearimage{background-color:#d9534f!important; color:white!important;}
 /*Input fields*/
 .input, select,.input1{font-size:15px;font-family:Arial, Sans-Serif;display:inline-block;margin-bottom:0px;padding:7px;color:darkslategrey;box-shadow:none;border:none;border-radius:0;}
 .input:focus, select:focus, .input1{border-color:white;outline:none;}
@@ -73,6 +76,7 @@ cardEnter {  0%, 20%, 40%, 60%, 80%, 100% {-webkit-transition-timing-function: c
     background-color: #43e38d;
     opacity: 0;
 }
+.floatRight {float:right;}
 /*Weather*/
 /*Weather font*/
 @font-face {
