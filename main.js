@@ -13,8 +13,8 @@ $(document).ready(function () {
     $(document).mouseup(function (e)
     {
         var container = $("#settings");
-        if (!container.is(e.target) 
-                && container.has(e.target).length === 0) 
+        if (!container.is(e.target)
+                && container.has(e.target).length === 0)
         {
             container.hide();
             $('#settingview').show();
@@ -109,9 +109,9 @@ $(document).ready(function () {
     $('#weather').css("color", userChoiceColorApp);
     $('#settingview').css('color', userChoiceColorApp);
     //Hide/show the clock
-     var dateVar = $('#date');
+    var dateVar = $('#date');
     var clockVar = $('#clock');
-      //Hide Clock
+    //Hide Clock
     $("input[name$='clockAction']").click(function () {
         var clockHideorShow = $(this).val();
 
@@ -123,8 +123,8 @@ $(document).ready(function () {
         else {
             clockVar.hide();
             localStorage.setItem('clockView', 'hide');
-                var dateStatus = localStorage.getItem('dateView');
-    var clockStatus = localStorage.getItem('clockView');
+            var dateStatus = localStorage.getItem('dateView');
+            var clockStatus = localStorage.getItem('clockView');
             if (dateStatus === 'hide' && clockStatus === 'hide') {
                 $('.searchEngines').css('margin-top', '175px');
             }
@@ -141,8 +141,8 @@ $(document).ready(function () {
         else {
             dateVar.hide();
             localStorage.setItem('dateView', 'hide');
-                var dateStatus = localStorage.getItem('dateView');
-    var clockStatus = localStorage.getItem('clockView');
+            var dateStatus = localStorage.getItem('dateView');
+            var clockStatus = localStorage.getItem('clockView');
             if (dateStatus === 'hide' && clockStatus === 'hide') {
                 $('.searchEngines').css('margin-top', '175px');
             }

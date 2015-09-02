@@ -26,7 +26,7 @@ var localWeather = localStorage.getItem('defaultWeatherLocation');
 $(document).ready(function () {
     loadWeather(localWeather, ''); //@params location, woeid
 });
-document.getElementById("weatherInput").value = localWeather;
+document.getElementById("weatherInput").value = localWeather.toUpperCase();
 function loadWeather(location, woeid) {
     $.simpleWeather({
         location: location,

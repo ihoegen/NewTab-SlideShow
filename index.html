@@ -17,11 +17,11 @@
     </head>
     <body>
         <script src=main.js></script>
-           <div style="float:right;">
-        <div id=weather></div>
+        <div style="float:right;">
+            <div id=weather></div>
         </div>
         <button id=settingview>Settings</button>
-     
+
         <div id=settings>
             <button id=settinghide>X</button>
             <h1>NewTab Slideshow</h1>
@@ -29,61 +29,90 @@
             <p>
                 Make sure the image has a file extension on the end. ie. .png .jpg .gif
             </p>
-            <input class=input name=image1 id=image size=20> <br>
+            <input class=input name=image1 id=image size=20>
+            <button onclick='pushtoarray()'>Save</button>
+            <br>
             <p id=successmessage>Image was added successfully</p>
             <p id=errormessage>Make sure the image has an ending of .png, .gif, or .jpg</p>
             <br>
-            <button onclick='pushtoarray()'>Save</button>
             <button onclick='clearbg()'>Clear Images</button>
             <br>
-            <h4>Default Search Engine</h4>
-            <button id="nosearch">None</button>
-            <button id=gset>Google</button>
-            <button id=bset>Bing</button>
-            <button id=yset>Yahoo</button>
-            <br>
+               <h4>Default Search Engine</h4>
+                    
+                        <button id="nosearch">None</button>
+                        <button id=gset>Google</button>
+                        <button id=bset>Bing</button>
+                        <button id=yset>Yahoo</button>
+                        <br>
             <h4>Weather Location</h4>
             <input class="input" name="weatherLocation" value="Weather Location" id="weatherInput" size="20">
             <button id="weatherLocUpdate">Save</button>
             <br>
             <br>
-            <label>Font:</label> 
-            <select id="fs">
-                <option value="Arial" selected="selected">Default (Arial)</option>
-                <option value="Comic Sans MS">Comic Sans MS</option>
-                <option value="Impact ">Impact </option>
-                <option value="Monospace ">Monospace</option>
-                <option value="Times New Roman">Times New Roman </option>
-                <option value="Verdana ">Verdana </option>
-            </select>
-            <br>
-<label>Date/Time Color:</label> 
-            <select id="fc">
-                <option value="White" selected="selected">Default (White)</option>
-                <option value="Black">Black</option>
-                <option value="Red ">Red </option>
-                <option value="Green">Green</option>
-                <option value="Blue">Blue</option>
-                <option value="Yellow">Yellow </option>
-                <option value="Purple">Purple </option>
-            </select>
-            <br>
-            Clock:
-          <input type="radio" name='clockAction' value='show' data-id="show" checked="checked"/> Show
-<input type="radio" name='clockAction' value='hide' data-id="hide" />Hide
-<br>
-Date:
-<input type="radio" name='dateAction' value='show' data-id="show" checked="checked"/> Show
-<input type="radio" name='dateAction' value='hide' data-id="hide" />Hide
-            <br>
-            <br>
+            <table style="width:100%">
+                <tr>
+                    <td>
+                        <label>Font:</label>
+                    </td>
+                    <td>
+                        <select id="fs">
+                            <option value="Arial" selected="selected">Default (Arial)</option>
+                            <option value="Comic Sans MS">Comic Sans MS</option>
+                            <option value="Impact ">Impact </option>
+                            <option value="Monospace ">Monospace</option>
+                            <option value="Times New Roman">Times New Roman </option>
+                            <option value="Verdana ">Verdana </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Date/Time Color:</label>
+                    </td>
+                    <td>
+                        <select id="fc">
+                            <option value="White" selected="selected">Default (White)</option>
+                            <option value="Black">Black</option>
+                            <option value="Red ">Red </option>
+                            <option value="Green">Green</option>
+                            <option value="Blue">Blue</option>
+                            <option value="Yellow">Yellow </option>
+                            <option value="Purple">Purple </option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <table style="width:100%">
+                <tr>
+                    <td>
+                        Clock:
+                    </td>
+                    <td>
+                        <label class="radio"><input type=radio name='clockAction' value='show' data-id="show" checked="checked"><span class="outer"><span class="inner"></span></span>Show</label>
+                    </td>
+
+                    <td><label class="radio"><input type=radio name='clockAction' value='hide' data-id="hide"><span class="outer"><span class="inner"></span></span>Hide</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                    </td>
+                    <td>
+                        <label class="radio"><input type=radio name='dateAction' value='show' data-id="show" checked="checked"><span class="outer"><span class="inner"></span></span>Show</label>
+                    </td>
+                    <td>
+                        <label class="radio"><input type=radio name='dateAction' value='hide' data-id="hide"><span class="outer"><span class="inner"></span></span>Hide</label>
+                    </td>
+                </tr>
+            </table>
             <a href="https://chrome.google.com/webstore/detail/newtab-slideshow-creator/lmolkglopgpgndjckhkndjglddidcaib">Chrome Extension Download</a>
             <br>
             <a href="http://hoegendevelopments.ga">Developer Website</a>
             <br><a href="https://github.com/ihoegen/NewTab-SlideShow">Github</a>
         </div>
-        <div class=content>  
-<div id=clock></div>
+        <div class=content>
+            <div id=clock></div>
             <p id=date></p>
             <div class=searchEngines>
                 <div id=google>
