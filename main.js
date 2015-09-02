@@ -1,6 +1,6 @@
 $(document).ready(function () {
     //Show Settings
-    $('#settingview').click(function () {
+       $('#settingview').click(function () {
         $('#settingview').hide();
         $('#settings').show();
     });
@@ -30,12 +30,14 @@ $(document).ready(function () {
         google.hide();
         bing.hide();
         yahoo.show();
+        $('#yset').addClass('buttonActive');
     }
     //Show Bing
     else if (testDefault === 'bing') {
         google.hide();
         bing.show();
         yahoo.hide();
+        $('#bset').addClass('buttonActive');
     }
     //Show None
     else if (testDefault === 'nosearch')
@@ -43,12 +45,14 @@ $(document).ready(function () {
         google.hide();
         bing.hide();
         yahoo.hide();
+        $('#nosearch').addClass('buttonActive');
     }
     //Show Google
     else {
         google.show();
         bing.hide();
         yahoo.hide();
+        $('#gset').addClass('buttonActive');
     }
     //Change the default Search Engines
     $('#gset').click(function () {
@@ -56,30 +60,39 @@ $(document).ready(function () {
         bing.hide();
         yahoo.hide();
         localStorage.setItem("defaultsearch", "google");
+        $('button').removeClass('buttonActive');
+        $(this).addClass('buttonActive');
     });
     $('#yset').click(function () {
         google.hide();
         bing.hide();
         yahoo.show();
         localStorage.setItem("defaultsearch", "yahoo");
+        $('button').removeClass('buttonActive');
+        $(this).addClass('buttonActive');
     });
     $('#bset').click(function () {
         google.hide();
         bing.show();
         yahoo.hide();
         localStorage.setItem("defaultsearch", "bing");
+        $('button').removeClass('buttonActive');
+        $(this).addClass('buttonActive');
     });
     $('#nosearch').click(function () {
         google.hide();
         bing.hide();
         yahoo.hide();
         localStorage.setItem("defaultsearch", "nosearch");
+        $('button').removeClass('buttonActive');
+        $(this).addClass('buttonActive');
     });
     //Change The Weather Location
-    $('#weatherLocUpdate').click(function () {
+    $('#weatherLocationForm').submit(function () {
         var weatherInputValue = $("input[name=weatherLocation]").val();
         localStorage.setItem('defaultWeatherLocation', weatherInputValue);
         location.reload();
+        return false;
     });
     //Change the font
     $("#fs").change(function () {
@@ -111,10 +124,13 @@ $(document).ready(function () {
     //Hide/show the clock
     var dateVar = $('#date');
     var clockVar = $('#clock');
+    var weatherVar=$('#weather');
     //Hide Clock
+    var dateStatus = localStorage.getItem('dateView');
+    var clockStatus = localStorage.getItem('clockView');
+    var weatherStatus=localStorage.getItem('weatherView');
     $("input[name$='clockAction']").click(function () {
         var clockHideorShow = $(this).val();
-
         if (clockHideorShow === 'show') {
             clockVar.show();
             localStorage.setItem('clockView', 'show');
@@ -123,7 +139,7 @@ $(document).ready(function () {
         else {
             clockVar.hide();
             localStorage.setItem('clockView', 'hide');
-            var dateStatus = localStorage.getItem('dateView');
+              var dateStatus = localStorage.getItem('dateView');
             var clockStatus = localStorage.getItem('clockView');
             if (dateStatus === 'hide' && clockStatus === 'hide') {
                 $('.searchEngines').css('margin-top', '175px');
@@ -148,12 +164,22 @@ $(document).ready(function () {
             }
         }
     });
+    //Show/hide weather
+    $("input[name$='weatherAction']").click(function () {
+        var weatherHideorShow = $(this).val();
+        if (weatherHideorShow === 'show') {
+            weatherVar.show();
+            localStorage.setItem('weatherView', 'show');
+        }
+        else {
+            weatherVar.hide();
+            localStorage.setItem('weatherView', 'hide');
+                    }
+    });
     //Onload retrieval of hide and show clock
-    clockVar.show();
-    var dateStatus = localStorage.getItem('dateView');
-    var clockStatus = localStorage.getItem('clockView');
     var dateAction = $('input[name$="dateAction"]');
     var clockAction = $('input[name$="clockAction"]');
+    var weatherAction=$('input[name$="weatherAction"]');
     if (dateStatus === 'hide' && clockStatus === 'hide') {
         $('.searchEngines').css('margin-top', '175px');
     }
@@ -173,16 +199,21 @@ $(document).ready(function () {
         clockVar.show();
         clockAction.filter('[value=show]').prop('checked', true);
     }
+     if (weatherStatus === 'hide') {
+        weatherVar.hide();
+        weatherAction.filter('[value=hide]').prop('checked', true);
+    }
+    else {
+        weatherVar.show();
+        weatherAction.filter('[value=show]').prop('checked', true);
+    }
+    $('input[name="weatherLocation"]').mouseup(function(e) { return false; });
+        $("input[name='weatherLocation']").focus(function() { $(this).select(); } );
+
 });
 //Script for the background
 var background = JSON.parse(localStorage["background"]);
-function refresh() {
-    var backdrop = JSON.parse(localStorage["background"]);
-    location.reload();
-    if (background.length >= 1) {
-        $.backstretch(backdrop, {duration: 6000, fade: 1000});
-    }
-}
+
 //Adds users Image to backstretch Array
 function pushtoarray() {
     var x = $("input[name=image1]").val();
@@ -191,11 +222,13 @@ function pushtoarray() {
         document.getElementById("image").value = "";
         background.push(x);
         localStorage["background"] = JSON.stringify(background);
-        $('#successmessage').show();
-        refresh();
+        alert('Image was added successfully!');
+        location.reload();
+        return false;
     }
     else {
-        $('#errormessage').show();
+        alert('Make sure the image has an ending of .png, .gif, or .jpg');
+        return false;
     }
 }
 var backdrop = JSON.parse(localStorage["background"]);
@@ -208,4 +241,49 @@ function clearbg() {
     var cleanbackground = [];
     localStorage["background"] = JSON.stringify(cleanbackground);
     location.reload();
+}
+//Clock
+startTime();
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    m = checkTime(m);
+    document.getElementById('clock').innerHTML = h + ":" + m;
+    var t = setTimeout(function () {
+        startTime();
+    }, 500);
+}
+function checkTime(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    ;
+    return i;
+}
+;
+//Date
+var d = new Date();
+document.getElementById("date").innerHTML = d.toDateString();
+// Weather Code
+var localWeather = localStorage.getItem('defaultWeatherLocation');
+$(document).ready(function () {
+    loadWeather(localWeather, ''); //@params location, woeid
+});
+document.getElementById("weatherInput").value = localWeather.toUpperCase();
+function loadWeather(location, woeid) {
+    $.simpleWeather({
+        location: location,
+        woeid: woeid,
+        unit: 'f',
+        success: function (weather) {
+            html = '<h2><i class="icon-' + weather.code + '"></i> ' + weather.temp + '&deg;' + weather.units.temp + '</h2>';
+            html += '<h3>' + weather.city + ', ' + weather.region + '</h3>';
+            $("#weather").html(html);
+        },
+        error: function (error) {
+            $("#weather").html('<p>' + error + '</p>');
+        }
+    })
+    ;
 }
