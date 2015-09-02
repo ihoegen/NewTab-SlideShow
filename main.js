@@ -1,6 +1,6 @@
 $(document).ready(function () {
     //Show Settings
-       $('#settingview').click(function () {
+    $('#settingview').click(function () {
         $('#settingview').hide();
         $('#settings').show();
     });
@@ -124,11 +124,11 @@ $(document).ready(function () {
     //Hide/show the clock
     var dateVar = $('#date');
     var clockVar = $('#clock');
-    var weatherVar=$('#weather');
+    var weatherVar = $('#weather');
     //Hide Clock
     var dateStatus = localStorage.getItem('dateView');
     var clockStatus = localStorage.getItem('clockView');
-    var weatherStatus=localStorage.getItem('weatherView');
+    var weatherStatus = localStorage.getItem('weatherView');
     $("input[name$='clockAction']").click(function () {
         var clockHideorShow = $(this).val();
         if (clockHideorShow === 'show') {
@@ -139,7 +139,7 @@ $(document).ready(function () {
         else {
             clockVar.hide();
             localStorage.setItem('clockView', 'hide');
-              var dateStatus = localStorage.getItem('dateView');
+            var dateStatus = localStorage.getItem('dateView');
             var clockStatus = localStorage.getItem('clockView');
             if (dateStatus === 'hide' && clockStatus === 'hide') {
                 $('.searchEngines').css('margin-top', '175px');
@@ -174,12 +174,12 @@ $(document).ready(function () {
         else {
             weatherVar.hide();
             localStorage.setItem('weatherView', 'hide');
-                    }
+        }
     });
     //Onload retrieval of hide and show clock
     var dateAction = $('input[name$="dateAction"]');
     var clockAction = $('input[name$="clockAction"]');
-    var weatherAction=$('input[name$="weatherAction"]');
+    var weatherAction = $('input[name$="weatherAction"]');
     if (dateStatus === 'hide' && clockStatus === 'hide') {
         $('.searchEngines').css('margin-top', '175px');
     }
@@ -199,7 +199,7 @@ $(document).ready(function () {
         clockVar.show();
         clockAction.filter('[value=show]').prop('checked', true);
     }
-     if (weatherStatus === 'hide') {
+    if (weatherStatus === 'hide') {
         weatherVar.hide();
         weatherAction.filter('[value=hide]').prop('checked', true);
     }
@@ -207,8 +207,58 @@ $(document).ready(function () {
         weatherVar.show();
         weatherAction.filter('[value=show]').prop('checked', true);
     }
-    $('input[name="weatherLocation"]').mouseup(function(e) { return false; });
-        $("input[name='weatherLocation']").focus(function() { $(this).select(); } );
+    $('input[name="weatherLocation"]').mouseup(function (e) {
+        return false;
+    });
+    $("input[name='weatherLocation']").focus(function () {
+        $(this).select();
+    });
+
+//Clock
+    startTime();
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        m = checkTime(m);
+        document.getElementById('clock').innerHTML = h + ":" + m;
+        var t = setTimeout(function () {
+            startTime();
+        }, 500);
+    }
+    function checkTime(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        ;
+        return i;
+    }
+    ;
+//Date
+    var d = new Date();
+    document.getElementById("date").innerHTML = d.toDateString();
+// Weather Code
+    var localWeather = localStorage.getItem('defaultWeatherLocation');
+    $(document).ready(function () {
+        loadWeather(localWeather, ''); //@params location, woeid
+    });
+    document.getElementById("weatherInput").value = localWeather.toUpperCase();
+    function loadWeather(location, woeid) {
+        $.simpleWeather({
+            location: location,
+            woeid: woeid,
+            unit: 'f',
+            success: function (weather) {
+                html = '<h2><i class="icon-' + weather.code + '"></i> ' + weather.temp + '&deg;' + weather.units.temp + '</h2>';
+                html += '<h3>' + weather.city + ', ' + weather.region + '</h3>';
+                $("#weather").html(html);
+            },
+            error: function (error) {
+                $("#weather").html('<p>' + error + '</p>');
+            }
+        })
+                ;
+    }
 
 });
 //Script for the background
@@ -241,49 +291,4 @@ function clearbg() {
     var cleanbackground = [];
     localStorage["background"] = JSON.stringify(cleanbackground);
     location.reload();
-}
-//Clock
-startTime();
-function startTime() {
-    var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    m = checkTime(m);
-    document.getElementById('clock').innerHTML = h + ":" + m;
-    var t = setTimeout(function () {
-        startTime();
-    }, 500);
-}
-function checkTime(i) {
-    if (i < 10) {
-        i = "0" + i;
-    }
-    ;
-    return i;
-}
-;
-//Date
-var d = new Date();
-document.getElementById("date").innerHTML = d.toDateString();
-// Weather Code
-var localWeather = localStorage.getItem('defaultWeatherLocation');
-$(document).ready(function () {
-    loadWeather(localWeather, ''); //@params location, woeid
-});
-document.getElementById("weatherInput").value = localWeather.toUpperCase();
-function loadWeather(location, woeid) {
-    $.simpleWeather({
-        location: location,
-        woeid: woeid,
-        unit: 'f',
-        success: function (weather) {
-            html = '<h2><i class="icon-' + weather.code + '"></i> ' + weather.temp + '&deg;' + weather.units.temp + '</h2>';
-            html += '<h3>' + weather.city + ', ' + weather.region + '</h3>';
-            $("#weather").html(html);
-        },
-        error: function (error) {
-            $("#weather").html('<p>' + error + '</p>');
-        }
-    })
-    ;
 }
