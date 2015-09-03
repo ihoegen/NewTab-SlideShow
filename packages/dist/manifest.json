@@ -3,7 +3,7 @@
   "icons": {"128": "ntsspng.png" },
     "name": "NewTab Slideshow Creator",
     "description": "Create your own slideshow that plays on your NewTab Page",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "permissions" : ["management"],
     "chrome_url_overrides" : {
         "newtab": "index.html"
