@@ -99,9 +99,15 @@ $(document).ready(function() {
   });
   //Display Desired Font
   var userChoiceFontApp = localStorage.getItem('userFont');
-  $("#fs").val(userChoiceFontApp);
-  $('body').css("font-family", userChoiceFontApp);
-  $('#settingview').css('font-family', userChoiceFontApp);
+  if (userChoiceFontApp !== null) {
+    $("#fs").val(userChoiceFontApp);
+    $('body').css("font-family", userChoiceFontApp);
+    $('#settingview').css('font-family', userChoiceFontApp);
+  } else {
+    $("#fs").val('Arial');
+    $('body').css("font-family", 'Arial');
+    $('#settingview').css('font-family', 'Arial');
+  };
   //Change the Clock Size
   $("#cs").change(function() {
     var userChoice = $(this).val();
@@ -111,8 +117,13 @@ $(document).ready(function() {
   });
   //Display Desired Clock Size
   var userChoiceClockSize = localStorage.getItem('userClockSize');
-  $("#cs").val(userChoiceClockSize);
-  $('#clock').css("font-size", userChoiceClockSize);
+  if (userChoiceClockSize !== null) {
+    $("#cs").val(userChoiceClockSize);
+    $('#clock').css("font-size", userChoiceClockSize);
+  } else {
+    $("#cs").val('150px');
+    $('#clock').css("font-size", '150px');
+  };
   //Change Font Color
   $("#fc").change(function() {
     var userChoiceColor = $('#fc').val();
@@ -124,10 +135,19 @@ $(document).ready(function() {
   });
   //Display Default Color
   var userChoiceColorApp = localStorage.getItem('userColor');
-  $("#fc").val(userChoiceColorApp);
-  $('body').css("color", userChoiceColorApp);
-  $('#weather').css("color", userChoiceColorApp);
-  $('#settingview').css('color', userChoiceColorApp);
+  if(userChoiceColorApp!==null){
+    $("#fc").val(userChoiceColorApp);
+    $('body').css("color", userChoiceColorApp);
+    $('#weather').css("color", userChoiceColorApp);
+    $('#settingview').css('color', userChoiceColorApp);
+  }
+  else{
+    $("#fc").val('White');
+    $('body').css("color", 'white');
+    $('#weather').css("color", 'white');
+    $('#settingview').css('color', 'white');
+  }
+
   //Hide/show the clock
   var dateVar = $('#date');
   var clockVar = $('#clock');
@@ -229,18 +249,17 @@ $(document).ready(function() {
   var clockFormat = localStorage.getItem('userTime');
   if (clockFormat === '24') {
     $("input[name$='clockFormat']").prop('checked', true);
-  }
+  } 
   startTime();
 
   function startTime() {
     var today = new Date();
     var h = today.getHours();
     var userTimeChoice = localStorage.getItem('userTime');
-    if (userTimeChoice === '24') {} else if (userTimeChoice === '12' && h >= 0 && h < 12) {} else {}
-    if (userTimeChoice === '12' && h !== 12) {
+    if ((userTimeChoice === '12'||userTimeChoice==null) && h !== 12) {
       h = h % 12;
     };
-    if (userTimeChoice == '12' && h == 0) {
+    if ((userTimeChoice == '12'||userTimeChoice==null) && h == 0) {
       h = 12;
     };
     var m = today.getMinutes();
