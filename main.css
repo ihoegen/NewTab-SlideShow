@@ -133,7 +133,7 @@ button:hover, .button:hover {
   top: 50%;
   margin: -170px 0 0 -300px;
   line-height: .75;
-  z-index: 0
+  z-index: -6
 }
 #welcomehide {
   margin: 0px
@@ -170,7 +170,7 @@ button:hover, .button:hover {
   width: 300px;
   color: white;
   padding: 15px;
-  z-index: 900;
+  z-index: 1000;
 }
 #settings button {
   background-color: #fff;
