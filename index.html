@@ -6,174 +6,220 @@
 -Add donate popup
 -->
 <html>
-    <head>
 
-        <title>New Tab</title>
-        <meta charset=UTF-8>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel=stylesheet type='text/css'>
-        <link rel=stylesheet href=main.css>
-        <link href='http://fonts.googleapis.com/css?family=Lobster' rel=stylesheet type='text/css'>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
-        <script src=ga.js></script>
-        <base target="_top">
-        <meta name="description" content="This is a Chrome extension that allows users to create custom slideshows on their NewTab pages">
-        <meta name="keywords" content="new tab, new tab slideshow, newtab slideshow, slideshow, new tab, hoegen developments">
-        <meta name="author" content="Ian Hoegen">
-        <meta name=viewport content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <script src=main.js></script>
-        <div class="floatRight">
-            <div id=weather></div>
-        </div>
-        <button id=settingview>Settings</button>
-        <div id=settings>
-            <button id=settinghide>X</button>
-            <h1>NewTab Slideshow</h1>
-            <p>Add image from an image host, ie <a href='http://imgur.com'>Imgur</a></p>
-            <p>
-                Make sure the image has a file extension on the end. ie. .png .jpg .gif
-            </p>
-            <form id="imageSubmit" onsubmit="pushtoarray();
+<head>
+
+  <title>New Tab</title>
+  <meta charset=UTF-8>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel=stylesheet type='text/css'>
+  <link rel=stylesheet href=main.css>
+  <link href='http://fonts.googleapis.com/css?family=Lobster' rel=stylesheet type='text/css'>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+  <script src=ga.js></script>
+  <base target="_top">
+  <meta name="description" content="This is a Chrome extension that allows users to create custom slideshows on their NewTab pages">
+  <meta name="keywords" content="new tab, new tab slideshow, newtab slideshow, slideshow, new tab, hoegen developments">
+  <meta name="author" content="Ian Hoegen">
+  <meta name=viewport content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <script src=main.js></script>
+  <div class="floatRight">
+    <div id=weather></div>
+  </div>
+  <button id=settingview>Settings</button>
+  <div id=settings>
+    <button id=settinghide>X</button>
+    <h1>NewTab Slideshow</h1>
+    <p>Add image from an image host, ie <a href='http://imgur.com'>Imgur</a></p>
+    <p>
+      Make sure the image has a file extension on the end. ie. .png .jpg .gif
+    </p>
+    <form id="imageSubmit" onsubmit="pushtoarray();
                   " target='_self'>
-                <input class=input name=image1 id=image size=20>
-                <input type="submit" value="Save" class="button" >
-            </form>
-            <button id=clearimage onclick='clearbg()'>Clear Images</button>
-            <br>
-            <h4>Default Search Engine</h4>
-            <button id="nosearch" >None</button>
-            <button id=gset>Google</button>
-            <button id=bset>Bing</button>
-            <button id=yset>Yahoo</button>
-            <br>
-            <h4>Weather Location</h4>
-            <form id="weatherLocationForm">
-                <input class="input" name="weatherLocation" value="Weather Location" id="weatherInput" size="20">
-                <input type="submit" value="Save" class="button">
-            </form>
-            <table>
-                <tr>
-                    <td>
-                        <label>Font type:</label>
-                    </td>
-                    <td>
-                        <select id="fs">
-                            <option value="Arial" selected="selected">Default (Arial)</option>
-                            <option value="Comic Sans MS">Comic Sans MS</option>
-                            <option value="Impact ">Impact </option>
-                            <option value="Monospace ">Monospace</option>
-                            <option value="Times New Roman">Times New Roman </option>
-                            <option value="Verdana ">Verdana </option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>Font Color:</label>
-                    </td>
-                    <td>
-                        <select id="fc">
-                            <option value="White" selected="selected">Default (White)</option>
-                            <option value="Black">Black</option>
-                            <option value="Red ">Red </option>
-                            <option value="Green">Green</option>
-                            <option value="Blue">Blue</option>
-                            <option value="Yellow">Yellow </option>
-                            <option value="Purple">Purple </option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>Clock Size:</label>
-                    </td>
-                    <td>
-                        <select id="cs">
-                            <option value="200px">200</option>
-                            <option value="175px">175</option>
-                            <option value="150px" selected="selected">Default (150)</option>
-                            <option value="125px">125</option>
-                            <option value="100px">100</option>
-                            <option value="72px">72</option>
-                            <option value="64px">64</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <td>
-                        Clock:
-                    </td>
-                    <td>
-                        <label class="radio"><input type=radio name='clockAction' value='show' data-id="show" checked="checked"><span class="outer"><span class="inner"></span></span>Show</label>
-                    </td>
+      <input class=input name=image1 id=image size=20>
+      <input type="submit" value="Save" class="button">
+    </form>
+    <button id=clearimage onclick='clearbg()'>Clear Images</button>
+    <br>
+    <h4>Default Search Engine</h4>
+    <button id="nosearch">None</button>
+    <button id=gset>Google</button>
+    <button id=bset>Bing</button>
+    <button id=yset>Yahoo</button>
+    <br>
+    <h4>Weather Location</h4>
+    <form id="weatherLocationForm">
+      <input class="input" name="weatherLocation" value="Weather Location" id="weatherInput" size="20">
+      <input type="submit" value="Save" class="button">
+    </form>
+    <table>
+      <tr>
+        <td>
+          <label>Font type:</label>
+        </td>
+        <td>
+          <select id="fs">
+            <option value="Arial" selected="selected">Default (Arial)</option>
+            <option value="Comic Sans MS">Comic Sans MS</option>
+            <option value="Impact ">Impact </option>
+            <option value="Monospace ">Monospace</option>
+            <option value="Times New Roman">Times New Roman </option>
+            <option value="Verdana ">Verdana </option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Font Color:</label>
+        </td>
+        <td>
+          <select id="fc">
+            <option value="White" selected="selected">Default (White)</option>
+            <option value="Black">Black</option>
+            <option value="Red ">Red </option>
+            <option value="Green">Green</option>
+            <option value="Blue">Blue</option>
+            <option value="Yellow">Yellow </option>
+            <option value="Purple">Purple </option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Clock Size:</label>
+        </td>
+        <td>
+          <select id="cs">
+            <option value="200px">200</option>
+            <option value="175px">175</option>
+            <option value="150px" selected="selected">Default (150)</option>
+            <option value="125px">125</option>
+            <option value="100px">100</option>
+            <option value="72px">72</option>
+            <option value="64px">64</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>
+          Clock:
+        </td>
+        <td>
+          <label class="radio">
+            <input type=radio name='clockAction' value='show' data-id="show" checked="checked">
+            <span class="outer">
+              <span class="inner"></span>
+            </span>Show</label>
+        </td>
 
-                    <td><label class="radio"><input type=radio name='clockAction' value='hide' data-id="hide"><span class="outer"><span class="inner"></span></span>Hide</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Date:
-                    </td>
-                    <td>
-                        <label class="radio"><input type=radio name='dateAction' value='show' data-id="show" checked="checked"><span class="outer"><span class="inner"></span></span>Show</label>
-                    </td>
-                    <td>
-                        <label class="radio"><input type=radio name='dateAction' value='hide' data-id="hide"><span class="outer"><span class="inner"></span></span>Hide</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Weather:
-                    </td>
-                    <td>
-                        <label class="radio"><input type=radio name='weatherAction' value='show' data-id="show" checked="checked"><span class="outer"><span class="inner"></span></span>Show</label>
-                    </td>
-                    <td>
-                        <label class="radio"><input type=radio name='weatherAction' value='hide' data-id="hide"><span class="outer"><span class="inner"></span></span>Hide</label>
-                    </td>
-                </tr>
-            </table>
-            <a href="https://chrome.google.com/webstore/detail/newtab-slideshow-creator/lmolkglopgpgndjckhkndjglddidcaib">Chrome Extension Download</a>
-            <br>
-            <a href="http://hoegendevelopments.ga">Developer Website</a>
-            <br><a href="https://github.com/ihoegen/NewTab-SlideShow">Github</a>
-            <br>
-            Donate: &nbsp;
-            <a class="floatRight" href="https://flattr.com/submit/auto?user_id=ihoegen&url=http%3A%2F%2Fnewtab.hoegendevelopments.ga" target="_blank"> <img src="//button.flattr.com/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0"></a>
-        </div>
+        <td>
+          <label class="radio">
+            <input type=radio name='clockAction' value='hide' data-id="hide">
+            <span class="outer">
+              <span class="inner"></span>
+            </span>Hide</label>
+        </td>
+      </tr>
+      <tr>
+        <td>Time:</td>
+        <td>
+          <label class="radio">
+            <input type=radio name='clockFormat' value='12' data-id="12" checked="checked">
+            <span class="outer">
+              <span class="inner"></span>
+            </span>12 Hour</label>
+        </td>
+        <td>
+          <label class="radio">
+            <input type=radio name='clockFormat' value='24' data-id="24">
+            <span class="outer">
+              <span class="inner"></span>
+            </span>24 Hour</label>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Date:
+        </td>
+        <td>
+          <label class="radio">
+            <input type=radio name='dateAction' value='show' data-id="show" checked="checked">
+            <span class="outer">
+              <span class="inner"></span>
+            </span>Show</label>
+        </td>
+        <td>
+          <label class="radio">
+            <input type=radio name='dateAction' value='hide' data-id="hide">
+            <span class="outer">
+              <span class="inner"></span>
+            </span>Hide</label>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Weather:
+        </td>
+        <td>
+          <label class="radio">
+            <input type=radio name='weatherAction' value='show' data-id="show" checked="checked">
+            <span class="outer">
+              <span class="inner"></span>
+            </span>Show</label>
+        </td>
+        <td>
+          <label class="radio">
+            <input type=radio name='weatherAction' value='hide' data-id="hide">
+            <span class="outer">
+              <span class="inner"></span>
+            </span>Hide</label>
+        </td>
+      </tr>
+    </table>
+    <a href="https://chrome.google.com/webstore/detail/newtab-slideshow-creator/lmolkglopgpgndjckhkndjglddidcaib">Chrome Extension Download</a>
+    <br>
+    <a href="http://hoegendevelopments.ga">Developer Website</a>
+    <br><a href="https://github.com/ihoegen/NewTab-SlideShow">Github</a>
+    <br> Donate: &nbsp;
+    <a class="floatRight" href="https://flattr.com/submit/auto?user_id=ihoegen&url=http%3A%2F%2Fnewtab.hoegendevelopments.ga" target="_blank">
+      <img src="//button.flattr.com/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0">
+    </a>
+  </div>
 
-        <div class=content>
-            <div id=clock></div>
-            <p id=date></p>
-            <div class=searchEngines>
-                <div id=google>
-                    <form target="_top" action="https://www.google.com/search" class=input1>
-                        <input class=input1 name=q placeholder="Google Search">
-                        <input type=submit value='Google Search' class=btn>
-                    </form>
-                </div>
-                <div id=yahoo>
-                    <form  target="_top" action="http://search.yahoo.com/search" class=input1>
-                        <input class=input1 name=p placeholder="Yahoo Search">
-                        <input type=submit value='Yahoo Search' class=btn>
-                    </form>
-                </div>
-                <div id=bing>
-                    <form target="_top" action="http://www.bing.com/search" class=input1>
-                        <input class=input1 name=q placeholder="Bing Search">
-                        <input type=submit value='Bing Search' class=btn>
-                    </form>
-                </div>
-            </div>
-        </div>
-         <div class="content welcome">
-            <button id=welcomehide>X</button>
-            <h1>Welcome to NewTabSlideShow</h1>
-        </div>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.0.2/jquery.simpleWeather.min.js'></script>
-    </body>
+  <div class=content>
+    <div id=clock></div>
+    <p id=date></p>
+    <div class=searchEngines>
+      <div id=google>
+        <form target="_top" action="https://www.google.com/search" class=input1>
+          <input class=input1 name=q placeholder="Google Search">
+          <input type=submit value='Google Search' class=btn>
+        </form>
+      </div>
+      <div id=yahoo>
+        <form target="_top" action="http://search.yahoo.com/search" class=input1>
+          <input class=input1 name=p placeholder="Yahoo Search">
+          <input type=submit value='Yahoo Search' class=btn>
+        </form>
+      </div>
+      <div id=bing>
+        <form target="_top" action="http://www.bing.com/search" class=input1>
+          <input class=input1 name=q placeholder="Bing Search">
+          <input type=submit value='Bing Search' class=btn>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="content welcome">
+    <button id=welcomehide>X</button>
+    <h1>Welcome to NewTabSlideShow</h1>
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.0.2/jquery.simpleWeather.min.js'></script>
+</body>
+
 </html>
