@@ -1,4 +1,7 @@
 <a href="https://flattr.com/submit/auto?user_id=ihoegen&url=http%3A%2F%2Fgithub.com%2Fihoegen" target="_blank"><img src="http://button.flattr.com/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0"></a>
+ <a href='https://www.paypal.me/ihoegen' target='_blank'>
+            <img src='http://i.imgur.com/vUKbUQW.png' alt='Pay Pal' title='Pay Pal' border='0' width="60px">
+          </a>
 # NewTab-SlideShow
 A Slideshow newtab for google chrome.
 A new NewTab extension for Chrome.
