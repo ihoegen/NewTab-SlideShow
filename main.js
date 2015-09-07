@@ -306,7 +306,7 @@ $(document).ready(function() {
     });
   }
   var listOfPics = backdrop;
-  var list = listOfPics.join([separator = ' <br>']);
+  var list = listOfPics.join([separator = ' <br> <br>']);
   $('#imageList').html(list);
 
   $('#showList').click(function() {
