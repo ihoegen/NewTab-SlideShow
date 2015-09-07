@@ -135,13 +135,12 @@ $(document).ready(function() {
   });
   //Display Default Color
   var userChoiceColorApp = localStorage.getItem('userColor');
-  if(userChoiceColorApp!==null){
+  if (userChoiceColorApp !== null) {
     $("#fc").val(userChoiceColorApp);
     $('body').css("color", userChoiceColorApp);
     $('#weather').css("color", userChoiceColorApp);
     $('#settingview').css('color', userChoiceColorApp);
-  }
-  else{
+  } else {
     $("#fc").val('White');
     $('body').css("color", 'white');
     $('#weather').css("color", 'white');
@@ -249,17 +248,17 @@ $(document).ready(function() {
   var clockFormat = localStorage.getItem('userTime');
   if (clockFormat === '24') {
     $("input[name$='clockFormat']").prop('checked', true);
-  } 
+  }
   startTime();
 
   function startTime() {
     var today = new Date();
     var h = today.getHours();
     var userTimeChoice = localStorage.getItem('userTime');
-    if ((userTimeChoice === '12'||userTimeChoice==null) && h !== 12) {
+    if ((userTimeChoice === '12' || userTimeChoice == null) && h !== 12) {
       h = h % 12;
     };
-    if ((userTimeChoice == '12'||userTimeChoice==null) && h == 0) {
+    if ((userTimeChoice == '12' || userTimeChoice == null) && h == 0) {
       h = 12;
     };
     var m = today.getMinutes();
@@ -306,8 +305,23 @@ $(document).ready(function() {
       }
     });
   }
+  var listOfPics = backdrop;
+  var list = listOfPics.join([separator = ' <br>']);
+  $('#imageList').html(list);
 
+  $('#showList').click(function() {
+    $('#imageList').show();
+    $(this).hide();
+    $('#hideList').show();
+  });
+  $('#hideList').click(function() {
+    $('#imageList').hide();
+    $(this).hide();
+    $('#showList').show();
+  });
 });
+
+
 //Script for the background
 var background = JSON.parse(localStorage["background"]);
 

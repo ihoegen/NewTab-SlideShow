@@ -71,6 +71,12 @@ button:hover, .button:hover {
 #clearimage:hover, #settinghide:hover, #welcomehide:hover {
   background-color: #c9302c!important;
 }
+#imageList {
+  display: none
+}
+#hideList {
+  display: none
+}
 .buttonActive {
   background-color: #337ab7 !important;
   color: white!important;
