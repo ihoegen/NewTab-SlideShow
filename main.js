@@ -305,7 +305,14 @@ $(document).ready(function() {
       }
     });
   }
-  var listOfPics = backdrop;
+  $('#image').keypress(function (e) {
+ var key = e.which;
+ if(key == 13)  // the enter key code
+  {
+            pushtoarray();
+  }
+}); 
+var listOfPics = backdrop;
   var list = listOfPics.join([separator = ' <br> <br>']);
   $('#imageList').html(list);
 
@@ -320,13 +327,18 @@ $(document).ready(function() {
     $('#showList').show();
   });
 });
-
-
-//Script for the background
+var visitCount=localStorage.getItem('visit');
+if (visitCount!=='1'){
+     localStorage.setItem('visit', '1');
+    var background=[];
+    localStorage["background"] = JSON.stringify(background);
+}
+      //Script for the background
 var background = JSON.parse(localStorage["background"]);
 
 //Adds users Image to backstretch Array
 function pushtoarray() {
+    console.log(background);
   var x = $("input[name=image1]").val();
   var re = new RegExp('\\.[pngjif]+', 'g');
   if (re.test(x)) {

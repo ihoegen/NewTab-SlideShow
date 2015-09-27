@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <!--TODO:
 -Create Welcome Video
 -Add Welcome popup
@@ -60,11 +60,9 @@
     <p>
       Make sure the image has a file extension on the end. ie. .png .jpg .gif
     </p>
-    <form id="imageSubmit" onsubmit="pushtoarray();
-                  " target='_self'>
-      <input class=input name=image1 id=image size=20>
-      <input type="submit" value="Save" class="button">
-    </form>
+         <input class=input name=image1 id=image size=20>
+         <button class="button" onclick="pushtoarray();">Save </button>
+        <br>
     <button id=clearimage onclick='clearbg()'>Clear Images</button>
     <button id='showList'>Show List of Images</button>
     <button id='hideList'>Hide List</button>
