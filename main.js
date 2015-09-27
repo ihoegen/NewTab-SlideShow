@@ -1,3 +1,10 @@
+var backdrop = JSON.parse(localStorage["background"]);
+if (backdrop.length >= 1) {
+  $.backstretch(backdrop, {
+    duration: 5000,
+    fade: 750
+  });
+};
 $(document).ready(function() {
   //Show Settings
   $('#settingview').click(function() {
@@ -320,8 +327,6 @@ $(document).ready(function() {
     $('#showList').show();
   });
 });
-
-
 //Script for the background
 var background = JSON.parse(localStorage["background"]);
 
@@ -341,13 +346,6 @@ function pushtoarray() {
     return false;
   }
 }
-var backdrop = JSON.parse(localStorage["background"]);
-if (backdrop.length >= 1) {
-  $.backstretch(backdrop, {
-    duration: 5000,
-    fade: 750
-  });
-};
 //Reset background
 function clearbg() {
   var cleanbackground = [];

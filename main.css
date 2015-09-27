@@ -1,10 +1,10 @@
 /*General */
-
 body {
   cursor: context-menu;
   color: white;
   font-family: Arial;
-  background-color: darkslategray;
+  background-image:url('http://i.imgur.com/AmWThvw.jpg') ;
+  background-size: cover;
   font: 15px 'Open Sans', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   margin: 0;
   padding: 0
