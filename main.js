@@ -237,7 +237,7 @@ $(document).ready(function() {
   //Clock
   $("input[name$='clockFormat']").click(function() {
     var clockFormat = $(this).val();
-    if (clockFormat == '12') {
+    if (clockFormat === '12') {
       localStorage.setItem('userTime', '12');
       startTime();
     } else {
@@ -255,10 +255,10 @@ $(document).ready(function() {
     var today = new Date();
     var h = today.getHours();
     var userTimeChoice = localStorage.getItem('userTime');
-    if ((userTimeChoice === '12' || userTimeChoice == null) && h !== 12) {
+    if ((userTimeChoice === '12' || userTimeChoice === null) && h !== 12) {
       h = h % 12;
     };
-    if ((userTimeChoice == '12' || userTimeChoice == null) && h == 0) {
+    if ((userTimeChoice === '12' || userTimeChoice === null) && h === 0) {
       h = 12;
     };
     var m = today.getMinutes();
@@ -307,7 +307,7 @@ $(document).ready(function() {
   }
   $('#image').keypress(function (e) {
  var key = e.which;
- if(key == 13)  // the enter key code
+ if(key === 13)  // the enter key code
   {
             pushtoarray();
   }
@@ -330,7 +330,7 @@ var listOfPics = backdrop;
 var visitCount=localStorage.getItem('visit');
 if (visitCount!=='1'){
      localStorage.setItem('visit', '1');
-    var background=[];
+    var background=['https://upload.wikimedia.org/wikipedia/commons/f/fb/Seattle_Columbia_Pano2.jpg'];
     localStorage["background"] = JSON.stringify(background);
 }
       //Script for the background
