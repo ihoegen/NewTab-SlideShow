@@ -1,5 +1,55 @@
+var visitCount = localStorage.getItem('visit');
+if (visitCount !== '1') {
+  localStorage.setItem('visit', '1');
+  var background = [];
+  localStorage["background"] = JSON.stringify(background);
+
+}
+//Script for the background
+var background = JSON.parse(localStorage["background"]);
+
+//Adds users Image to backstretch Array
+function pushtoarray() {
+  var x = $("input[name=image1]").val();
+  var re = new RegExp('\\.[pngjif]+', 'g');
+  if (re.test(x)) {
+    document.getElementById("image").value = "";
+    background.push(x);
+    localStorage["background"] = JSON.stringify(background);
+    alert('Image was added successfully!');
+    location.reload();
+    return false;
+  } else {
+    alert('Make sure the image has an ending of .png, .gif, or .jpg');
+    return false;
+  }
+}
+var backdrop = JSON.parse(localStorage["background"]);
+if (backdrop.length >= 1) {
+  $.backstretch(backdrop, {
+    duration: 5000,
+    fade: 750
+  });
+};
+//Reset background
+function clearbg() {
+  var cleanbackground = [];
+  localStorage["background"] = JSON.stringify(cleanbackground);
+  location.reload();
+}
 $(document).ready(function() {
   //Show Settings
+  var user = {
+    searchEngine: localStorage.getItem("defaultsearch"),
+    localWeather: localStorage.getItem('defaultWeatherLocation'),
+    font: localStorage.getItem('userFont'),
+    clockSize: localStorage.getItem('userClockSize'),
+    color: localStorage.getItem('userColor'),
+    clockStatus: localStorage.getItem('clockView'),
+    dateStatus: localStorage.getItem('dateView'),
+    clockFormat: localStorage.getItem('userTime'),
+    time: localStorage.getItem('userTime')
+  }
   $('#settingview').click(function() {
     $('#settingview').hide();
     $('#settings').show();
@@ -21,23 +71,22 @@ $(document).ready(function() {
   var google = $('#google');
   var bing = $('#bing');
   var yahoo = $('#yahoo');
-  var testDefault = localStorage.getItem("defaultsearch");
   //Show Yahoo
-  if (testDefault === 'yahoo') {
+  if (user.searchEngine === 'yahoo') {
     google.hide();
     bing.hide();
     yahoo.show();
     $('#yset').addClass('buttonActive');
   }
   //Show Bing
-  else if (testDefault === 'bing') {
+  else if (user.searchEngine === 'bing') {
     google.hide();
     bing.show();
     yahoo.hide();
     $('#bset').addClass('buttonActive');
   }
   //Show None
-  else if (testDefault === 'nosearch') {
+  else if (user.searchEngine === 'nosearch') {
     google.hide();
     bing.hide();
     yahoo.hide();
@@ -94,15 +143,13 @@ $(document).ready(function() {
   $("#fs").change(function() {
     var userChoiceFont = $(this).val();
     localStorage.setItem('userFont', userChoiceFont);
-    var userChoiceFontApp = localStorage.getItem('userFont');
-    $('body').css("font-family", userChoiceFontApp);
+    $('body').css("font-family", userChoiceFont);
   });
   //Display Desired Font
-  var userChoiceFontApp = localStorage.getItem('userFont');
-  if (userChoiceFontApp !== null) {
-    $("#fs").val(userChoiceFontApp);
-    $('body').css("font-family", userChoiceFontApp);
-    $('#settingview').css('font-family', userChoiceFontApp);
+  if (user.font !== null) {
+    $("#fs").val(user.font);
+    $('body').css("font-family", user.font);
+    $('#settingview').css('font-family', user.font);
   } else {
     $("#fs").val('Arial');
     $('body').css("font-family", 'Arial');
@@ -112,48 +159,42 @@ $(document).ready(function() {
   $("#cs").change(function() {
     var userChoice = $(this).val();
     localStorage.setItem('userClockSize', userChoice);
-    var userChoice = localStorage.getItem('userClockSize');
     $('#clock').css("font-size", userChoice);
+    location.reload();
   });
   //Display Desired Clock Size
-  var userChoiceClockSize = localStorage.getItem('userClockSize');
-  if (userChoiceClockSize !== null) {
-    $("#cs").val(userChoiceClockSize);
-    $('#clock').css("font-size", userChoiceClockSize);
+  if (user.clockSize !== null) {
+    $("#cs").val(user.clockSize);
+    $('#clock').css("font-size", user.clockSize);
   } else {
     $("#cs").val('150px');
     $('#clock').css("font-size", '150px');
   };
   //Change Font Color
   $("#fc").change(function() {
-    var userChoiceColor = $('#fc').val();
-    localStorage.setItem('userColor', userChoiceColor);
-    var userChoiceColorApp = localStorage.getItem('userColor');
-    $('body').css("color", userChoiceColorApp);
-    $('#weather').css("color", userChoiceColorApp);
-    $('#settingview').css('color', userChoiceColorApp);
+    var userColor = $('#fc').val();
+    localStorage.setItem('userColor', userColor);
+    $('body').css("color", userColor);
+    $('#weather').css("color", userColor);
+    $('#settingview').css('color', userColor);
   });
   //Display Default Color
-  var userChoiceColorApp = localStorage.getItem('userColor');
-  if (userChoiceColorApp !== null) {
-    $("#fc").val(userChoiceColorApp);
-    $('body').css("color", userChoiceColorApp);
-    $('#weather').css("color", userChoiceColorApp);
-    $('#settingview').css('color', userChoiceColorApp);
+  if (user.color !== null) {
+    $("#fc").val(user.color);
+    $('body').css("color", user.color);
+    $('#weather').css("color", user.color);
+    $('#settingview').css('color', user.color);
   } else {
     $("#fc").val('White');
     $('body').css("color", 'white');
     $('#weather').css("color", 'white');
     $('#settingview').css('color', 'white');
   }
-
   //Hide/show the clock
   var dateVar = $('#date');
   var clockVar = $('#clock');
   var weatherVar = $('#weather');
   //Hide Clock
-  var dateStatus = localStorage.getItem('dateView');
-  var clockStatus = localStorage.getItem('clockView');
   var weatherStatus = localStorage.getItem('weatherView');
   $("input[name$='clockAction']").click(function() {
     var clockHideorShow = $(this).val();
@@ -164,9 +205,9 @@ $(document).ready(function() {
     } else {
       clockVar.hide();
       localStorage.setItem('clockView', 'hide');
-      var dateStatus = localStorage.getItem('dateView');
-      var clockStatus = localStorage.getItem('clockView');
-      if (dateStatus === 'hide' && clockStatus === 'hide') {
+      user.dateStatus = localStorage.getItem('dateView');
+      user.clockStatus = localStorage.getItem('clockView');
+      if (user.dateStatus === 'hide' && user.clockStatus === 'hide') {
         $('.searchEngines').css('margin-top', '175px');
       }
     }
@@ -181,9 +222,9 @@ $(document).ready(function() {
     } else {
       dateVar.hide();
       localStorage.setItem('dateView', 'hide');
-      var dateStatus = localStorage.getItem('dateView');
-      var clockStatus = localStorage.getItem('clockView');
-      if (dateStatus === 'hide' && clockStatus === 'hide') {
+      user.dateStatus = localStorage.getItem('dateView');
+      user.clockStatus = localStorage.getItem('clockView');
+      if (user.dateStatus === 'hide' && user.clockStatus === 'hide') {
         $('.searchEngines').css('margin-top', '175px');
       }
     }
@@ -203,17 +244,17 @@ $(document).ready(function() {
   var dateAction = $('input[name$="dateAction"]');
   var clockAction = $('input[name$="clockAction"]');
   var weatherAction = $('input[name$="weatherAction"]');
-  if (dateStatus === 'hide' && clockStatus === 'hide') {
+  if (user.dateStatus === 'hide' && user.clockStatus === 'hide') {
     $('.searchEngines').css('margin-top', '175px');
   }
-  if (dateStatus === 'hide') {
+  if (user.dateStatus === 'hide') {
     dateVar.hide();
     dateAction.filter('[value=hide]').prop('checked', true);
   } else {
     dateVar.show();
     dateAction.filter('[value=show]').prop('checked', true);
   }
-  if (clockStatus === 'hide') {
+  if (user.clockStatus === 'hide') {
     clockVar.hide();
     clockAction.filter('[value=hide]').prop('checked', true);
   } else {
@@ -233,7 +274,6 @@ $(document).ready(function() {
   $("input[name='weatherLocation']").focus(function() {
     $(this).select();
   });
-
   //Clock
   $("input[name$='clockFormat']").click(function() {
     var clockFormat = $(this).val();
@@ -245,20 +285,19 @@ $(document).ready(function() {
       startTime();
     }
   });
-  var clockFormat = localStorage.getItem('userTime');
-  if (clockFormat === '24') {
+  if (user.clockFormat === '24') {
     $("input[name$='clockFormat']").prop('checked', true);
   }
   startTime();
 
   function startTime() {
+    user.time = localStorage.getItem('userTime');
     var today = new Date();
     var h = today.getHours();
-    var userTimeChoice = localStorage.getItem('userTime');
-    if ((userTimeChoice === '12' || userTimeChoice === null) && h !== 12) {
+    if ((user.time === '12' || user.time === null) && h !== 12) {
       h = h % 12;
     };
-    if ((userTimeChoice === '12' || userTimeChoice === null) && h === 0) {
+    if ((user.time === '12' || user.time === null) && h === 0) {
       h = 12;
     };
     var m = today.getMinutes();
@@ -282,12 +321,11 @@ $(document).ready(function() {
   var d = new Date();
   document.getElementById("date").innerHTML = d.toDateString();
   // Weather Code
-  var localWeather = localStorage.getItem('defaultWeatherLocation');
   $(document).ready(function() {
-    loadWeather(localWeather, ''); //@params location, woeid
+    loadWeather(user.localWeather, ''); //@params location, woeid
   });
-  if (localWeather !== null) {
-    document.getElementById("weatherInput").value = localWeather.toUpperCase();
+  if (user.localWeather !== null) {
+    document.getElementById("weatherInput").value = user.localWeather.toUpperCase();
   };
 
   function loadWeather(location, woeid) {
@@ -305,14 +343,14 @@ $(document).ready(function() {
       }
     });
   }
-  $('#image').keypress(function (e) {
- var key = e.which;
- if(key === 13)  // the enter key code
-  {
-            pushtoarray();
-  }
-}); 
-var listOfPics = backdrop;
+  $('#image').keypress(function(e) {
+    var key = e.which;
+    if (key === 13) // the enter key code
+    {
+      pushtoarray();
+    }
+  });
+  var listOfPics = backdrop;
   var list = listOfPics.join([separator = ' <br> <br>']);
   $('#imageList').html(list);
 
@@ -327,42 +365,3 @@ var listOfPics = backdrop;
     $('#showList').show();
   });
 });
-var visitCount=localStorage.getItem('visit');
-if (visitCount!=='1'){
-     localStorage.setItem('visit', '1');
-    var background=['https://upload.wikimedia.org/wikipedia/commons/f/fb/Seattle_Columbia_Pano2.jpg'];
-    localStorage["background"] = JSON.stringify(background);
-}
-      //Script for the background
-var background = JSON.parse(localStorage["background"]);
-
-//Adds users Image to backstretch Array
-function pushtoarray() {
-    console.log(background);
-  var x = $("input[name=image1]").val();
-  var re = new RegExp('\\.[pngjif]+', 'g');
-  if (re.test(x)) {
-    document.getElementById("image").value = "";
-    background.push(x);
-    localStorage["background"] = JSON.stringify(background);
-    alert('Image was added successfully!');
-    location.reload();
-    return false;
-  } else {
-    alert('Make sure the image has an ending of .png, .gif, or .jpg');
-    return false;
-  }
-}
-var backdrop = JSON.parse(localStorage["background"]);
-if (backdrop.length >= 1) {
-  $.backstretch(backdrop, {
-    duration: 5000,
-    fade: 750
-  });
-};
-//Reset background
-function clearbg() {
-  var cleanbackground = [];
-  localStorage["background"] = JSON.stringify(cleanbackground);
-  location.reload();
-}
