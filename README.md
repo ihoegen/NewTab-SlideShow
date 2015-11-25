@@ -3,7 +3,9 @@
             <img src='http://i.imgur.com/vUKbUQW.png' alt='Pay Pal' title='Pay Pal' border='0' width="60px">
           </a>
 # NewTab-SlideShow
-A Slideshow newtab for google chrome.
+A Slideshow newtab for Google Chrome.
+This is an extension for a Google Chrome, that allows users to create custom newtab pages, and can even include a slideshow.
+Built in JavaScript amd jQuery and uses localstorage to store user variables.
 A new NewTab extension for Chrome.
 The install link is https://chrome.google.com/webstore/detail/newtab-slideshow-creator/lmolkglopgpgndjckhkndjglddidcaib
 
