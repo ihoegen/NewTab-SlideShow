@@ -11,18 +11,18 @@ var background = JSON.parse(localStorage["background"]);
 //Adds users Image to backstretch Array
 function pushtoarray() {
   var x = $("input[name=image1]").val();
+  var pictureArray = x.split(",");
+  console.log(pictureArray);
   var re = new RegExp('\\.[pngjif]+', 'g');
-  if (re.test(x)) {
-    document.getElementById("image").value = "";
-    background.push(x);
-    localStorage["background"] = JSON.stringify(background);
-    alert('Image was added successfully!');
-    location.reload();
-    return false;
-  } else {
-    alert('Make sure the image has an ending of .png, .gif, or .jpg');
-    return false;
+  for (var i = 0; i < pictureArray.length; i++) {
+    if (re.test(pictureArray[i].trim())) {
+      document.getElementById("image").value = "";
+      background.push(pictureArray[i].trim());
+      localStorage["background"] = JSON.stringify(background);
+    }
   }
+  location.reload();
+  return false;
 }
 var backdrop = JSON.parse(localStorage["background"]);
 if (backdrop.length >= 1) {
