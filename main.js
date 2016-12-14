@@ -26,8 +26,12 @@ function pushtoarray() {
 }
 var backdrop = JSON.parse(localStorage["background"]);
 if (backdrop.length >= 1) {
+  var duration = 5000;
+  if (localStorage.getItem('delayTime')) {
+    duration = parseInt(localStorage.getItem('delayTime')) * 1000;
+  }
   $.backstretch(backdrop, {
-    duration: 5000,
+    duration: duration,
     fade: 750
   });
 };
@@ -136,6 +140,12 @@ $(document).ready(function() {
   $('#weatherLocationForm').submit(function() {
     var weatherInputValue = $("input[name=weatherLocation]").val();
     localStorage.setItem('defaultWeatherLocation', weatherInputValue);
+    location.reload();
+    return false;
+  });
+  $('#slideShowDelay').submit(function() {
+    var delayInput = $("input[name=slideShowDelay]").val();
+    localStorage.setItem('delayTime', delayInput);
     location.reload();
     return false;
   });
@@ -327,6 +337,8 @@ $(document).ready(function() {
   if (user.localWeather !== null) {
     document.getElementById("weatherInput").value = user.localWeather.toUpperCase();
   };
+  document.getElementById("delayInput").value = localStorage.getItem('delayTime') || '5';
+
 
   function loadWeather(location, woeid) {
     $.simpleWeather({
